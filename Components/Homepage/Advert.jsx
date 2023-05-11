@@ -53,8 +53,9 @@ function Advert() {
                 <img
                   src={advertImg[0][0]}
                   alt="add"
-                  style={{ height: "190px" }}
+                  // style={{ height: "190px" }}
                 />
+                <h3>HAIR / WIGS</h3>
               </a>
             ) : (
               <a
@@ -73,8 +74,9 @@ function Advert() {
                 <img
                   src={advertImg[0][1]}
                   alt="add"
-                  style={{ height: "190px" }}
+                  // style={{ height: "190px" }}
                 />
+                <h3>NAILS / BEAUTY</h3>
               </a>
             ) : (
               <a
@@ -93,8 +95,9 @@ function Advert() {
                 <img
                   src={advertImg[0][2]}
                   alt="add"
-                  style={{ height: "190px" }}
+                  // style={{ height: "190px" }}
                 />
+                <h3>POUCH / ASSOCCERIES</h3>
               </a>
             ) : (
               <a
@@ -113,8 +116,9 @@ function Advert() {
                 <img
                   src={advertImg[0][3]}
                   alt="add"
-                  style={{ height: "190px" }}
+                  // style={{ height: "190px" }}
                 />
+                <h3>ADULT TOYS</h3>
               </a>
             ) : (
               <a

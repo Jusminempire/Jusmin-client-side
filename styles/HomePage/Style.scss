@@ -28,7 +28,7 @@ $font-light: #666;
 $bg-gray: #eee;
 $bg-dark-gray: #444;
 $bg-dark: #342e37;
-$txt-blue: #3c91e6;
+$txt-blue: #ff69b4;
 $txt-light-blue: #cfe8ff;
 
 @mixin flexDisplay($justifyProp, $alignProp, $flexDirection) {
@@ -96,7 +96,7 @@ $txt-light-blue: #cfe8ff;
   position: fixed;
   top: 0;
   left: 0;
-  background: whitesmoke;
+  background: #fff5f5;
   box-shadow: 5px 5px 10px $bg-gray;
 
   .topbar-top-con {
@@ -108,14 +108,15 @@ $txt-light-blue: #cfe8ff;
     position: fixed;
     top: 0;
     left: 0;
-    background: whitesmoke;
+    background: #fff5f5;
     // border: 1px solid red;
 
     .topbar-top-con-left {
       @include flexDisplay(space-between, center, row);
 
       img {
-        width: 50px;
+        // width: 50px;
+        height: 50px;
         // border: 1px solid red;
       }
     }
@@ -290,15 +291,28 @@ $txt-light-blue: #cfe8ff;
     }
   }
 }
+.category-con {
+  // border: 2px solid red;
+  margin-top: 30px;
 
+  h1 {
+    text-align: center;
+    color: $txt-blue;
+    font-size: 30px;
+
+    @include responsive(tablet) {
+      font-size: 50px;
+    }
+  }
+}
 // NEW PRODUCTS
 .new-arrivals-main-con {
   width: 100vw;
-  margin-top: 40px;
+  margin-top: 50px;
   overflow-x: hidden;
   // border: 2px solid red;
   @include responsive(tablet) {
-    margin-top: 30px;
+    margin-top: 100px;
   }
   .new-arrivals-con {
     @include flexDisplay(space-between, center, column);
@@ -352,7 +366,7 @@ $txt-light-blue: #cfe8ff;
           transition: transform 0.5s ease;
           background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
           // border: 2px solid rgb(0, 255, 21);
-          background: whitesmoke;
+          background: #fff5f5;
           @include flexDisplay(space-between, center, column);
 
           .img {
@@ -390,7 +404,7 @@ $txt-light-blue: #cfe8ff;
 // PRODUCT
 .product-session-con {
   // border: 2px solid red;
-  background: whitesmoke;
+  background: #fff5f5;
   // margin-top: 70px;
   padding: 10px 0;
   width: 100%;
@@ -797,7 +811,7 @@ $txt-light-blue: #cfe8ff;
 .review-main-con {
   // border: 2px solid red;
 
-  background: whitesmoke;
+  background: #fff5f5;
   padding: 0 5px;
   margin: 0 auto;
   margin: 130px 0 0 0;
@@ -990,11 +1004,23 @@ $txt-light-blue: #cfe8ff;
   .ad-img {
     @include flexDisplay(center, center, row);
     img {
-      width: 100%;
-
+      // width: 100%;
       margin: 0 auto;
-
       cursor: pointer;
+
+      height: 100px;
+      width: 100vw;
+
+      @include responsive(bigphone) {
+        height: 150px;
+        width: 100%;
+      }
+    }
+
+    h3 {
+      text-align: center;
+      color: $txt-blue;
+      font-size: 15px;
     }
   }
 }
@@ -1032,7 +1058,7 @@ $txt-light-blue: #cfe8ff;
         cursor: pointer;
         top: 5px;
         left: 5px;
-        background: #3c91e6c6;
+        background: #ff69b4;
         border: 1px solid #8080802b;
         color: white;
         width: 70px;
@@ -1040,6 +1066,7 @@ $txt-light-blue: #cfe8ff;
         text-align: center;
         border-radius: 10px;
         font-size: 18px;
+
         &:hover {
           background: gray;
         }

@@ -109,9 +109,9 @@ function Footer() {
               <button
                 style={{
                   height: "70%",
-                  color: "gray",
+                  color: "#ff69b4",
                   cursor: "pointer",
-                  border: ".1px solid gray",
+                  border: ".1px solid #ff69b4",
                   width: "100px",
                 }}
                 onClick={() => logOUT()}
@@ -130,8 +130,9 @@ function Footer() {
                 <button
                   style={{
                     height: "100%",
-                    color: "#3c91e6",
-                    border: "1px solid #3c91e6",
+                    color: "#ff69b4",
+                    cursor: "pointer",
+                    border: ".1px solid #ff69b4",
                     width: "100px",
                     cursor: "pointer",
                   }}
@@ -142,7 +143,7 @@ function Footer() {
             )}
           </div>
           <img
-            src="/WhatsApp_Image_2023-04-28_at_9.29.11_AM-removebg-preview-removebg-previe.png"
+            src="/WhatsApp_Image_2023-04-28_at_9.29.11_AM-removebg-preview-removebg-prev.png"
             className="map"
             alt=""
           />

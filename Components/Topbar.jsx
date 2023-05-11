@@ -72,7 +72,7 @@ function Topbar({ dynamictriger, triga }) {
               alt=""
             />
           </Link>
-          <p style={{ marginLeft: "5px", color: "#3c91e6" }}>
+          <p style={{ marginLeft: "5px", color: "#ff69b4" }}>
             {name && "Hello! " + name.split(" ")[0]}
           </p>
         </div>

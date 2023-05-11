@@ -71,7 +71,7 @@
   position: fixed;
   top: 15px;
   left: 15px;
-  background: rgba(60, 145, 230, 0.7764705882);
+  background: #ff69b4;
   border: 1px solid rgba(128, 128, 128, 0.168627451);
   color: white;
   width: 70px;
@@ -91,7 +91,7 @@
   margin-top: 10px;
   padding: 5px 10px;
   border-radius: 5px;
-  background: #3c91e6;
+  background: #ff69b4;
   color: white;
 }
 .store-item-dynamic-con .store-item-con {
