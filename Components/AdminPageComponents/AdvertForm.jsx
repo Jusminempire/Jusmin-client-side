@@ -27,10 +27,10 @@ function AdvertForm({ advertDetails }) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -61,10 +61,10 @@ function AdvertForm({ advertDetails }) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -95,10 +95,10 @@ function AdvertForm({ advertDetails }) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -129,10 +129,10 @@ function AdvertForm({ advertDetails }) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 

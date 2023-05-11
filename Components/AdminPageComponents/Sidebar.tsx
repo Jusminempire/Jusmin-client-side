@@ -54,7 +54,7 @@ function Sidebar() {
         <a className="brand" style={{ marginTop: "10px" }}>
           <img
             style={{ width: "60px" }}
-            src="/WhatsApp_Image_2023-04-28_at_9.29.11_AM-removebg-preview-removebg-preview.png"
+            src="/WhatsApp_Image_2023-04-28_at_9.29.11_AM-removebg-preview-removebg-previe.png"
             className="map"
             alt=""
           />
@@ -105,12 +105,12 @@ function Sidebar() {
             className={`${active === 6 ? "active" : ""}`}
             onClick={() => setActive(0)}
           >
-            <a href="#" className="list-items">
+            <p className="list-items">
               <MdSettings className="list-icons" />
               <a href="Tel:08104015180" target="_blank">
                 <span className="text">AJIS</span>
               </a>
-            </a>
+            </p>
           </li>
           <li
             className={`${active === 7 ? "active" : ""}`}

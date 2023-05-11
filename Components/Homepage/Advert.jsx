@@ -50,7 +50,11 @@ function Advert() {
           <div className="ad-img">
             {advertImg.length > 0 ? (
               <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img src={advertImg[0][0]} alt="add" />
+                <img
+                  src={advertImg[0][0]}
+                  alt="add"
+                  style={{ height: "190px" }}
+                />
               </a>
             ) : (
               <a
@@ -66,7 +70,11 @@ function Advert() {
           <div className="ad-img">
             {advertImg?.length > 0 ? (
               <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img src={advertImg[0][1]} alt="add" />
+                <img
+                  src={advertImg[0][1]}
+                  alt="add"
+                  style={{ height: "190px" }}
+                />
               </a>
             ) : (
               <a
@@ -82,7 +90,11 @@ function Advert() {
           <div className="ad-img">
             {advertImg.length > 0 ? (
               <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img src={advertImg[0][2]} alt="add" />
+                <img
+                  src={advertImg[0][2]}
+                  alt="add"
+                  style={{ height: "190px" }}
+                />
               </a>
             ) : (
               <a
@@ -98,7 +110,11 @@ function Advert() {
           <div className="ad-img">
             {advertImg.length > 0 ? (
               <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img src={advertImg[0][3]} alt="add" />
+                <img
+                  src={advertImg[0][3]}
+                  alt="add"
+                  style={{ height: "190px" }}
+                />
               </a>
             ) : (
               <a

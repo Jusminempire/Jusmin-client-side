@@ -10,7 +10,7 @@ export const getSessionUser = async () => {
   if (token) {
     try {
       const response = await axios.get(
-        "https://elegantstorescollection.onrender.com/api/v1/userverification/getSessionUser",
+        "https://jusmin.onrender.com/api/v1/userverification/getSessionUser",
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -47,13 +47,10 @@ export const changePassword = async (
 ) => {
   // const userId = localStorage.getItem("userId") || [];
   axios
-    .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/resetpassword",
-      {
-        password,
-        userId,
-      }
-    )
+    .post("https://jusmin.onrender.com/api/v1/userverification/resetpassword", {
+      password,
+      userId,
+    })
     .then((resp) => {
       console.log(resp);
 
@@ -76,7 +73,7 @@ export const changePassword = async (
 export const logIN = async (setLoading, router, setErrMsg, details) => {
   axios
     .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/loginuser",
+      "https://jusmin.onrender.com/api/v1/userverification/loginuser",
       details
     )
     .then((resp) => {
@@ -104,7 +101,7 @@ export const registerUser = async (
 ) => {
   axios
     .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/registeruser",
+      "https://jusmin.onrender.com/api/v1/userverification/registeruser",
       user
     )
     .then((resp) => {
@@ -135,10 +132,7 @@ export const emailResendOTP = async (
   setNotificationModal
 ) => {
   axios
-    .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/resendotp",
-      user
-    )
+    .post("https://jusmin.onrender.com/api/v1/userverification/resendotp", user)
     .then((resp) => {
       console.log(resp.data);
       localStorage.setItem("userId", resp.data.data.userId);
@@ -168,7 +162,7 @@ export const forgetPassword = async (
 ) => {
   axios
     .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/forgotPassword",
+      "https://jusmin.onrender.com/api/v1/userverification/forgotPassword",
       user
     )
     .then((resp) => {
@@ -202,7 +196,7 @@ export const fogetPwEnterOTP = async (
 ) => {
   axios
     .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/resetpasswordOTP",
+      "https://jusmin.onrender.com/api/v1/userverification/resetpasswordOTP",
       {
         userId,
         otp,
@@ -234,13 +228,10 @@ export const enterOTP = async (
   setOtpNotificationModal
 ) => {
   axios
-    .post(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/verifyotp",
-      {
-        userId,
-        otp,
-      }
-    )
+    .post("https://jusmin.onrender.com/api/v1/userverification/verifyotp", {
+      userId,
+      otp,
+    })
     .then((resp) => {
       console.log(resp.data);
       setOTPBtnLoading(false);
@@ -261,7 +252,7 @@ export const enterOTP = async (
 const singleTransaction = async (transactID) => {
   const token = Cookies.get("JWTtoken");
   const { data } = await axios.get(
-    `https://elegantstorescollection.onrender.com/api/v1/transaction/getsingletransaction/${transactID}`,
+    `https://jusmin.onrender.com/api/v1/transaction/getsingletransaction/${transactID}`,
     {
       headers: {
         authorization: `Bearer ${token}`,
@@ -279,7 +270,7 @@ const updateTransaction = async (transactID, transactionStatus) => {
   const token = Cookies.get("JWTtoken");
   await axios
     .patch(
-      "https://elegantstorescollection.onrender.com/api/v1/transaction/updatetransaction/" +
+      "https://jusmin.onrender.com/api/v1/transaction/updatetransaction/" +
         `${transactID}`,
       {
         transactionstatus: transactionStatus,
@@ -311,7 +302,7 @@ export const transactionStatus = async (
       {
         headers: {
           Authorization:
-            "Bearer sk_live_07a9b2545961bcd3a5bae7c2479f78844df5e0ab",
+            "Bearer sk_test_3f383f1af75a39537da652b48d2325b2a0c4ba26",
         },
       }
     );
@@ -331,7 +322,7 @@ export const allTransactions = async () => {
   const token = Cookies.get("JWTtoken");
   try {
     const response = await axios.get(
-      "https://elegantstorescollection.onrender.com/api/v1/transaction/alltransaction",
+      "https://jusmin.onrender.com/api/v1/transaction/alltransaction",
       {
         headers: {
           authorization: `Bearer ${token}`,
@@ -372,7 +363,7 @@ export const allUsers = async () => {
   const token = Cookies.get("JWTtoken");
   try {
     const response = await axios.get(
-      "https://elegantstorescollection.onrender.com/api/v1/userverification/allusers",
+      "https://jusmin.onrender.com/api/v1/userverification/allusers",
       {
         headers: {
           authorization: `Bearer ${token}`,
@@ -394,7 +385,7 @@ export const allUsers = async () => {
 const singleUser = async (userID) => {
   const token = Cookies.get("JWTtoken");
   const { data } = await axios.get(
-    `https://elegantstorescollection.onrender.com/api/v1/userverification/getsingleuser/${userID}`,
+    `https://jusmin.onrender.com/api/v1/userverification/getsingleuser/${userID}`,
     {
       headers: {
         authorization: `Bearer ${token}`,
@@ -425,7 +416,7 @@ export const addToCart = async (productData, productID) => {
 
   try {
     const { data } = await axios.post(
-      "https://elegantstorescollection.onrender.com/api/v1/cart/addtocart",
+      "https://jusmin.onrender.com/api/v1/cart/addtocart",
       product,
       {
         headers: {
@@ -447,7 +438,7 @@ export const allCartItem = async () => {
   if (token) {
     try {
       const response = await axios.get(
-        "https://elegantstorescollection.onrender.com/api/v1/cart/allcart",
+        "https://jusmin.onrender.com/api/v1/cart/allcart",
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -473,7 +464,7 @@ export const deleteCartItem = async (_id) => {
   const token = Cookies.get("JWTtoken");
   try {
     const { data } = await axios.delete(
-      `https://elegantstorescollection.onrender.com/api/v1/cart/deletecart/${_id}`,
+      `https://jusmin.onrender.com/api/v1/cart/deletecart/${_id}`,
       {
         headers: {
           authorization: `Bearer ${token}`,
@@ -493,7 +484,7 @@ export const checkOut = async (productData, setTransactionDetails) => {
 
   axios
     .post(
-      "https://elegantstorescollection.onrender.com/api/v1/transaction/posttransaction",
+      "https://jusmin.onrender.com/api/v1/transaction/posttransaction",
       productData,
       {
         headers: {

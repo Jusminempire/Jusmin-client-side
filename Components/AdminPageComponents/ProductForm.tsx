@@ -27,10 +27,10 @@ function ProductForm() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -61,10 +61,10 @@ function ProductForm() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -95,10 +95,10 @@ function ProductForm() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -129,10 +129,10 @@ function ProductForm() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -276,11 +276,9 @@ function ProductForm() {
         <label>Product Category</label>
         <select {...register("productcategory", { required: true })}>
           <option value="">Select</option>
-          <option value="Software">Software</option>
-          <option value="Fashion">Fashion</option>
-          <option value="Medicals">Medicals</option>
-          <option value="Gadgets">Gadgets</option>
           <option value="Beauty">Beauty</option>
+          <option value="Assocceries">Assocceries</option>
+          <option value="18+">18+</option>
         </select>
         {errors.productcategory && (
           <span

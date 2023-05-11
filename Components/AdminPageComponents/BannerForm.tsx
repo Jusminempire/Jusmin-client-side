@@ -35,10 +35,10 @@ function BannerForm() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "elegantstorescollection");
+      formData.append("upload_preset", "jusmin");
 
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dvsbb7nue/image/upload`,
+        `https://api.cloudinary.com/v1_1/djtneu2rh/image/upload`,
         formData
       );
 
@@ -93,66 +93,6 @@ function BannerForm() {
       {" "}
       {/* BANNER POST */}
       <form onSubmit={handleSubmit(onSubmitBanner)}>
-        {/* BANNER NAME */}
-        <label>Banner Name</label>
-        <input
-          type="text"
-          placeholder="Enter Banner Name"
-          {...register("bannername", { required: true })}
-        />
-        {errors.bannername && (
-          <span
-            className="errror-msg"
-            style={{
-              fontSize: "12px",
-              fontStyle: "italic",
-              color: "red",
-            }}
-          >
-            Kindly Enter Product Name
-          </span>
-        )}
-
-        {/* PRODUCT CATEGORY */}
-        <label>Banner Category</label>
-        <select {...register("bannercategory", { required: true })}>
-          <option value="">Select</option>
-          <option value="Software">Software</option>
-          <option value="Assocceries">Assocceries</option>
-          <option value="Fashion">Fashion</option>
-        </select>
-        {errors.bannercategory && (
-          <span
-            className="errror-msg"
-            style={{
-              fontSize: "12px",
-              fontStyle: "italic",
-              color: "red",
-            }}
-          >
-            Kindly Enter Product Category
-          </span>
-        )}
-
-        {/* BANNER DISCRIPTION */}
-        <label>Banner Description</label>
-        <textarea
-          // type="text"
-          placeholder="Enter Banner Description"
-          {...register("bannerscription", { required: true })}
-        />
-        {errors.bannerscription && (
-          <span
-            className="errror-msg"
-            style={{
-              fontSize: "12px",
-              fontStyle: "italic",
-              color: "red",
-            }}
-          >
-            Kindly Enter Product Description
-          </span>
-        )}
         {/* BANNER IMAGE*/}
         <label>Banner Image</label>
         <p style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>

@@ -214,26 +214,45 @@
   }
 }
 
-.banner-main-con {
-  background-size: cover;
-  background-position: center;
-}
 @media only screen and (min-width: 768px) {
   .banner-main-con {
     margin-top: 80px;
   }
 }
-.banner-main-con .carousel-con .carousel-items-con {
-  height: 260px;
+.banner-main-con .carousel-main-con {
+  position: relative;
+}
+.banner-main-con .carousel-main-con .carousel-con {
+  height: 190px;
+}
+.banner-main-con .carousel-main-con .carousel-con .carousel-items-con {
+  height: 200px;
+  width: 100%;
+  position: absolute;
+  top: 0;
 }
 @media only screen and (min-width: 768px) {
-  .banner-main-con .carousel-con .carousel-items-con {
-    height: 460px;
+  .banner-main-con .carousel-main-con .carousel-con .carousel-items-con {
+    height: 300px;
   }
 }
 @media only screen and (min-width: 1200px) {
-  .banner-main-con .carousel-con .carousel-items-con {
-    height: 660px;
+  .banner-main-con .carousel-main-con .carousel-con .carousel-items-con {
+    height: 500px;
+  }
+}
+.banner-main-con .carousel-main-con .carousel-con .carousel-items-con .img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media only screen and (min-width: 768px) {
+  .banner-main-con .carousel-main-con .carousel-con {
+    height: 300px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .banner-main-con .carousel-main-con .carousel-con {
+    height: 500px;
   }
 }
 

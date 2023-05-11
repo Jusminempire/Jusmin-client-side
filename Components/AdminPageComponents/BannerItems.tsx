@@ -43,8 +43,8 @@ function BannerItems({ bannerDetails }: { bannerDetails: any[] }) {
                 <tr>
                   <th>Img</th>
                   <th>Name</th>
-                  <th>Cat</th>
-                  <th>Desc</th>
+                  {/* <th>Cat</th>
+                  <th>Desc</th> */}
                   <th>Delete</th>
                 </tr>
               </thead>
@@ -53,10 +53,10 @@ function BannerItems({ bannerDetails }: { bannerDetails: any[] }) {
                   <StoreItemsIndividual
                     key={product.id}
                     id={product.id}
-                    bannercategory={product.data().bannercategory}
-                    bannerdescription={product.data().bannerscription}
+                    // bannercategory={product.data().bannercategory}
+                    // bannerdescription={product.data().bannerscription}
                     bannerimage={product.data().bannerimage}
-                    bannername={product.data().bannername}
+                    // bannername={product.data().bannername}
                   />
                 );
               })}
@@ -72,16 +72,16 @@ export default BannerItems;
 
 function StoreItemsIndividual({
   id,
-  bannercategory,
-  bannerdescription,
+  // bannercategory,
+  // bannerdescription,
   bannerimage,
-  bannername,
-}: {
+}: // bannername,
+{
   id: string;
-  bannercategory: string;
-  bannerdescription: string;
+  // bannercategory: string;
+  // bannerdescription: string;
   bannerimage: string;
-  bannername: string;
+  // bannername: string;
 }) {
   const deleteProduct = async (id: string) => {
     const itemRef = doc(db, "banneritems", id);
@@ -96,24 +96,24 @@ function StoreItemsIndividual({
         <td>
           <img
             src={bannerimage}
-            alt={bannername}
+            alt="img"
             style={{ width: "40px", borderRadius: "0%", margin: "5px" }}
           />
         </td>
-        <td style={{ width: "15%" }}>
-          <p>{bannername}</p>
+        <td>
+          <p>Banner</p>
         </td>
-        <td style={{ width: "10%", margin: "5px" }}>{bannercategory}</td>
-        <td style={{ width: "40%", margin: "5px" }}>
+        {/* <td style={{ width: "10%", margin: "5px" }}>{bannercategory}</td> */}
+        {/* <td style={{ width: "40%", margin: "5px" }}>
           {bannerdescription.substring(0, 70)} . . .
-        </td>
+        </td> */}
         <td
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: "20px",
-            width: "100px",
+            // width: "100px",
           }}
         >
           <b className="delete-product-btn" onClick={() => deleteProduct(id)}>

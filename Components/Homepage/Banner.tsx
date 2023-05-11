@@ -25,63 +25,26 @@ function Banner() {
   return (
     <div className="banner-main-con">
       <div className="content">
-        <div className="text-content">
-          {/* <h2>
-            ELEGANT <br /> COLLETIONS
-          </h2> */}
-          <Carousely />
-          {/* SIAPLAYING PRODUCTS DETAILS*/}
-          {/* <div className="banner-text-con">
-            <Fade arrows={false}>
-              {bannerDetails.map((item, index) => (
-                <div key={item.id} className="cat-desc">
-                  <h3 style={{ textTransform: "uppercase", marginTop: "20px" }}>
-                    {item.data().bannercategory}
-                  </h3>
-                  <p>
-                    <span style={{ fontWeight: "bolder", color: "#3c91e6" }}>
-                      {item.data().bannername} :{" "}
-                    </span>
-                    {item.data().bannerscription.substring(0, 100).toString()}.
-                    . .
-                  </p>
-                </div>
-              ))}
-            </Fade>
-          </div> */}
-        </div>
-
         {/* SIAPLAYING PRODUCTS IMAGES*/}
-        <div className="banner-product-img-main-con">
-          {/* <div className="swiper-wrapper">
+        <div className="carousel-main-con">
+          <div className="carousel-con">
             <Fade arrows={false}>
               {bannerDetails.map((item, index) => (
-                <div className="banner-img-con" key={item.id}>
-                  <div className="div-2">
-                    <Image
-                      src={item.data().bannerimage}
-                      alt="img"
-                      className="img"
-                      fill
-                      sizes="100vw"
-                      style={{
-                        right: "0",
-                      }}
-                    />
-                  </div>
+                <div className="carousel-items-con" key={item.id}>
+                  <Image
+                    src={item.data().bannerimage}
+                    alt="img"
+                    className="img"
+                    fill
+                    sizes="100vw"
+                    style={{
+                      right: "0",
+                    }}
+                  />
                 </div>
               ))}
             </Fade>
-          </div> */}
-
-          {/* <img
-            src="https://res.cloudinary.com/isreal/image/upload/v1679349295/E-Commerce%20Project/stand_kzmbbh.png"
-            className="stand"
-            alt=""
-          /> */}
-
-          {/* PRODUCT BUTTON */}
-          {/* <Link href="/products">Shop now</Link> */}
+          </div>
         </div>
       </div>
     </div>

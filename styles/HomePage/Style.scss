@@ -251,24 +251,41 @@ $txt-light-blue: #cfe8ff;
 
 // BANNER STYLE
 .banner-main-con {
-  // background: url(https://res.cloudinary.com/isreal/image/upload/v1679349263/E-Commerce%20Project/banner-bg_v0db6l.jpg)
-  //   no-repeat;
-  background-size: cover;
-  background-position: center;
+  // border: 2px solid red;
 
   @include responsive(bigphone) {
     margin-top: 80px;
   }
+  .carousel-main-con {
+    // border: 2px solid rgb(0, 64, 255);
+    position: relative;
+    // height: 200px;
 
-  .carousel-con {
-    .carousel-items-con {
-      height: 260px;
+    .carousel-con {
+      // border: 2px solid rgb(0, 255, 34);
+      height: 190px;
+      .carousel-items-con {
+        height: 200px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        // border: 2px solid red;
 
+        @include responsive(bigphone) {
+          height: 300px;
+        }
+        @include responsive(desktop) {
+          height: 500px;
+        }
+        .img {
+          object-fit: cover;
+        }
+      }
       @include responsive(bigphone) {
-        height: 460px;
+        height: 300px;
       }
       @include responsive(desktop) {
-        height: 660px;
+        height: 500px;
       }
     }
   }
