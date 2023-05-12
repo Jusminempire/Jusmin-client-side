@@ -171,6 +171,15 @@
 .client-single-product .single-product .top-container .big-display-con .big-display-img .img {
   height: 100%;
 }
+.client-single-product .single-product .top-container .big-display-con .product-video {
+  border: 2px solid red;
+  z-index: 20;
+  width: 100%;
+}
+.client-single-product .single-product .top-container .big-display-con .product-video .vid {
+  border: 2px solid red;
+  width: 100%;
+}
 .client-single-product .single-product .top-container .small-display-img-con {
   display: flex;
   justify-content: center;

@@ -5,18 +5,20 @@ import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
 import { FC, useEffect, useState } from "react";
 
-interface ProductsProps {
-  displayedProducts: any[];
-}
-const Products: FC<ProductsProps> = ({ displayedProducts }) => {
+// interface ProductsProps {
+//   displayedProducts: any[];
+// }
+const Products = ({ displayedProducts }) => {
   // filter products by category
+  // console.log(displayedProducts);
+  console.log("hjgjhgh");
   const dynamicBtn = [
     "All",
     ...new Set(
       displayedProducts.map((category) => category?.data()?.productcategory)
     ),
   ];
-  // console.log(displayedProducts);
+
   // state for category
   const [category, setCategory] = useState("All");
 
@@ -35,7 +37,7 @@ const Products: FC<ProductsProps> = ({ displayedProducts }) => {
       );
     }
   }, [category, displayedProducts]);
-
+  console.log(products);
   // search by input value
   const [search, setSearch] = useState(" ");
 
@@ -72,7 +74,7 @@ const Products: FC<ProductsProps> = ({ displayedProducts }) => {
 
       <div className="product">
         {products
-          .filter((item) => {
+          ?.filter((item) => {
             if (item.data().productname === "") {
               return item;
             } else if (
@@ -81,6 +83,8 @@ const Products: FC<ProductsProps> = ({ displayedProducts }) => {
                 .productname.toLowerCase()
                 .includes(search.toLowerCase())
             ) {
+              return item;
+            } else {
               return item;
             }
           })
@@ -112,14 +116,6 @@ function SingleProduct({
   productoldprice,
   productcategory,
   productdescription,
-}: {
-  id: string;
-  productimages: string;
-  productname: string;
-  productprice: number;
-  productoldprice: number;
-  productcategory: string;
-  productdescription: string;
 }) {
   // percentage of peomo
   const priceDifference =

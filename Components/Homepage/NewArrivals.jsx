@@ -14,7 +14,7 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import Image from "next/image";
 
 function NewArrivals() {
-  const [trendingProducts, setTrendingProducts] = useState<any[]>([]);
+  const [trendingProducts, setTrendingProducts] = useState([]);
   useEffect(() => {
     return onSnapshot(
       query(
@@ -58,12 +58,6 @@ function TrendingProducts({
   productoldprice,
   productimages,
   productname,
-}: {
-  id: string;
-  productprice: number;
-  productoldprice: number;
-  productimages: string;
-  productname: string;
 }) {
   // percentage of peomo
   const priceDifference =

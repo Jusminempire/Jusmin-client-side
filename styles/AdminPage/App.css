@@ -17,7 +17,7 @@ li {
   --poppins: "Poppins", sans-serif;
   --lato: "Lato", sans-serif;
   --light: #f9f9f9;
-  --blue: #3d91e6;
+  --blue: #ff69b4;
   --light-blue: #cfe8ff;
   --grey: #eee;
   --dark-grey: #aaaaaa;
@@ -164,7 +164,7 @@ body {
 
 .category {
   border: 1px solid var(--blue);
-  color: #3d91e6;
+  color: #ff69b4;
   cursor: pointer;
 }
 
@@ -1065,7 +1065,7 @@ body {
 }
 .singleuser-page .singleuser-card .lower-part .transaction-main-con .transaction-card1:hover {
   border: 1px solid gray;
-  background: whitesmoke;
+  background: #fff5f5;
   color: white;
 }
 @media only screen and (min-width: 768px) {

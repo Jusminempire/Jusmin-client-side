@@ -274,7 +274,7 @@ function PayForm({
             {/* STREET */}
             <img
               src="https://res.cloudinary.com/isreal/image/upload/v1670407854/banking%20app/master_visa_verve_oakngi.png"
-              alt=""
+              alt="img"
             />
             <div>
               <input

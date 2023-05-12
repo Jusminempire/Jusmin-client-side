@@ -125,7 +125,7 @@
   border: 1px solid #ff69b4;
 }
 .product-page-main-con .product-page-con .category-con .active-category {
-  background: #3c91e6;
+  background: #ff69b4;
   color: white;
 }
 .product-page-main-con .product-page-con .product {
@@ -325,7 +325,7 @@
   border: 1px solid #ff69b4;
   padding: 0px 5px;
   border-radius: 5px;
-  background: #3c91e6;
+  background: #ff69b4;
   text-align: center;
   color: white;
   font-size: 12px;

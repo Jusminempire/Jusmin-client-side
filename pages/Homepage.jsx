@@ -16,6 +16,7 @@ import {
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 // components
 import Topbar from "../Components/Topbar";
+import Advantages from "../Components/Advantages";
 import Banner from "../Components/Homepage/Banner";
 import NewArrivals from "../Components/Homepage/NewArrivals";
 import Products from "../Components/Homepage/Products";
@@ -103,9 +104,7 @@ const Homepage = () => {
 
           <Group position="center"></Group>
           <Banner />
-          <div className="category-con">
-            {/* <h1>CATEGORIES</h1> */}
-          </div>
+          <div className="category-con">{/* <h1>CATEGORIES</h1> */}</div>
           <Advert />
           {/* NEW ARRIVALS */}
           <NewArrivals />
@@ -117,6 +116,7 @@ const Homepage = () => {
           {/* <NewsLetter /> */}
           {/* PROMO */}
           <Promo />
+          <Advantages />
           {/* REVIEWS */}
           <Review />
           {/* <Advert /> */}

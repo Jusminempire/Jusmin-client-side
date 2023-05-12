@@ -29,10 +29,10 @@ function Modal({ setLoginTriger }) {
             {emoji ? (
               <img
                 src="/undraw_Access_account_re_8spm (1).png"
-                alt=""
+                alt="img"
               />
             ) : (
-              <img src="/downloai.jpeg" alt="" />
+              <img src="/downloai.jpeg" alt="img" />
             )}
           </div>
           <div className="modal-text">

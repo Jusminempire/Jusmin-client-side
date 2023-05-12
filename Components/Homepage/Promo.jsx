@@ -8,7 +8,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 // ICONS
 import { Fade, Slide } from "react-slideshow-image";
 function Promo() {
-  const [promoProducts, setPromoProducts] = useState<any[]>([]);
+  const [promoProducts, setPromoProducts] = useState([]);
   useEffect(() => {
     return onSnapshot(
       query(collection(db, "products"), where("productclass", "==", "promo")),

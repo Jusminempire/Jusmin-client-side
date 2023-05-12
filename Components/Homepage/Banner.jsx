@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Fade, Slide } from "react-slideshow-image";
 // import { Carousel } from "react-responsive-carousel";
-import Carousely from "../Carousel";
+
 // firebase
 import { db, storage } from "../../Firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
@@ -12,12 +12,12 @@ import Loader from "../Loader";
 
 function Banner() {
   // FETCHING BANNER SORTED FROM FIREBABSE
-  const [bannerDetails, setBannerDetails] = useState<any[]>([]);
+  const [bannerDetails, setBannerDetails] = useState([]);
   useEffect(() => {
     return onSnapshot(
       query(collection(db, "banneritems"), orderBy("timestamp", "desc")),
       (snapshot) => {
-        setBannerDetails(snapshot.docs);
+        setBannerDetails(snapshot?.docs);
       }
     );
   }, [db]);
@@ -29,10 +29,10 @@ function Banner() {
         <div className="carousel-main-con">
           <div className="carousel-con">
             <Fade arrows={false}>
-              {bannerDetails.map((item, index) => (
+              {bannerDetails?.map((item, index) => (
                 <div className="carousel-items-con" key={item.id}>
                   <Image
-                    src={item.data().bannerimage}
+                    src={item?.data()?.bannerimage}
                     alt="img"
                     className="img"
                     fill

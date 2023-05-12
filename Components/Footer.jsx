@@ -145,7 +145,7 @@ function Footer() {
           <img
             src="/WhatsApp_Image_2023-04-28_at_9.29.11_AM-removebg-preview-removebg-prev.png"
             className="map"
-            alt=""
+            alt="img"
           />
         </div>
       </div>

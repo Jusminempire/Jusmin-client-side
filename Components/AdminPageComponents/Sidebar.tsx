@@ -58,7 +58,7 @@ function Sidebar() {
             className="map"
             alt=""
           />
-          <span className="text">ELEGANT COLLECTION</span>
+          {/* <span className="text">ELEGANT COLLECTION</span> */}
         </a>
         <ul className="side-menu top">
           <li

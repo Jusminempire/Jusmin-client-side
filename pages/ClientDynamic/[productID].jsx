@@ -6,6 +6,7 @@ import Moment from "react-moment";
 import { useEffect, useState, useRef, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import YouTube from "react-youtube";
 import {
   collection,
   getDocs,
@@ -31,6 +32,7 @@ import { useForm } from "react-hook-form";
 import { addToCart, getSessionUser } from "../../Services/functions";
 import Modal from "../../Components/Modal";
 import { CartQuantityContext } from "../_app";
+import Advantages from "../../Components/Advantages";
 
 export async function getStaticPaths() {
   const colRef = collection(db, "products");
@@ -267,6 +269,11 @@ function Details() {
     }
     setPayModal(true);
   };
+
+  // const videoUrl = "https://www.youtube.com/watch?v=JOe0vsU_vzw"; // YouTube video URL
+  // // Extract the video ID from the URL
+  // const videoId = videoUrl.split("v=")[1];
+
   return (
     <>
       {loginTriger && <Modal setLoginTriger={setLoginTriger} />}
@@ -339,6 +346,7 @@ function Details() {
             <p className="p-number">
               <span>Spec :</span> {product?.productnumber}
             </p>
+
             <div>
               <p className="p-desc">
                 <span>Category :</span> {product?.productcategory}
@@ -368,6 +376,22 @@ function Details() {
               <span>Return Policy : </span>
               Product warrante lasts 48hrs after delievery notice.
             </p>
+            <div>
+              <iframe
+                // width="560"
+                // height="315"
+                style={{
+                  width: "100%",
+                  maxWidth: "500px",
+                  height: "255px",
+                  marginTop: "20px",
+                }}
+                src="https://www.youtube.com/embed/JOe0vsU_vzw"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+              ></iframe>
+            </div>
 
             <div className="product-qty-price-con">
               <div className="qty-con">
@@ -397,7 +421,16 @@ function Details() {
               </Link>
             </div>
           </div>
+          {/* <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/JOe0vsU_vzw"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          ></iframe> */}
         </div>
+
         <div className="single-product-details">
           <div className="product-review">
             <h1>REVIEW</h1>
@@ -423,7 +456,7 @@ function Details() {
                     <label>User Name</label>
                     <input
                       type="text"
-                      defaultValue={userDetails?.username || ""}
+                      value={userDetails?.username || ""}
                       placeholder="eg. John Doe"
                       {...register("username", { required: true })}
                     />
@@ -443,7 +476,7 @@ function Details() {
                     <label>User Email</label>
                     <input
                       type="email"
-                      defaultValue={userDetails?.useremail || ""}
+                      value={userDetails?.useremail || ""}
                       placeholder="Enter Your Email"
                       {...register("useremail", { required: true })}
                     />
@@ -513,6 +546,7 @@ function Details() {
               </div>
             </div>
           </div>
+          <Advantages />
           {/* similar products */}
           <>
             <h3 style={{ marginTop: "100px", color: "#3c91e6" }}>

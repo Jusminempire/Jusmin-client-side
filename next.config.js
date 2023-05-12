@@ -11,6 +11,8 @@ module.exports = withPWA({
       "lh3.googleusercontent.com",
       "firebasestorage.googleapis.com",
       "google.com",
+      "api.paystack.co",
+      "jusmin.onrender.com",
     ],
   },
 });
