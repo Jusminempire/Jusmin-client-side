@@ -193,17 +193,6 @@ $txt-light-blue: #cfe8ff;
             height: 100%;
           }
         }
-
-        .product-video {
-          border: 2px solid red;
-          z-index: 20;
-          width: 100%;
-
-          .vid {
-            border: 2px solid red;
-            width: 100%;
-          }
-        }
       }
 
       .small-display-img-con {
@@ -809,7 +798,7 @@ $txt-light-blue: #cfe8ff;
       // overflow: hidden;
       @include flexDisplay(center, center, column);
       box-shadow: -5px -10px 15px rgba(128, 128, 128, 0.625);
-      background: whitesmoke;
+      background: #fff5f5;
       border-radius: 5px;
       width: 90%;
       max-width: 500px;

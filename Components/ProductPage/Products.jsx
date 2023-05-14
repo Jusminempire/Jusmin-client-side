@@ -39,7 +39,7 @@ const Products = ({ displayedProducts }) => {
   }, [category, displayedProducts]);
   console.log(products);
   // search by input value
-  const [search, setSearch] = useState(" ");
+  const [search, setSearch] = useState("");
 
   return (
     <div className="product-page-con">
@@ -85,10 +85,10 @@ const Products = ({ displayedProducts }) => {
             ) {
               return item;
             } else {
-              return item;
+              return;
             }
           })
-          .map((product) => (
+          ?.map((product) => (
             <SingleProduct
               key={product.id}
               id={product.id}

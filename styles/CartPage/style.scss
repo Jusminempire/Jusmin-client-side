@@ -28,7 +28,7 @@ $font-light: #666;
 $bg-gray: #eee;
 $bg-dark-gray: #444;
 $bg-dark: #342e37;
-$txt-blue: #3c91e6;
+$txt-blue: #ff69b4;
 $txt-light-blue: #cfe8ff;
 
 @mixin flexDisplay($justifyProp, $alignProp, $flexDirection) {
@@ -69,7 +69,7 @@ $txt-light-blue: #cfe8ff;
   cursor: pointer;
   margin: 10px;
   margin-left: 5px;
-  background: #3c91e6c6;
+  background: $txt-blue;
   border: 1px solid #8080802b;
   color: white;
   width: 70px;
@@ -92,7 +92,7 @@ $txt-light-blue: #cfe8ff;
   border: 1px solid #ff000000;
   margin-top: 50px;
   position: relative;
-  background: whitesmoke;
+  background: #fff5f5;
 
   @include responsive(bigphone) {
     margin: 0 auto;
@@ -159,7 +159,7 @@ $txt-light-blue: #cfe8ff;
           border: none;
           cursor: pointer;
           color: white;
-          background: #3c91e6;
+          background: $txt-blue;
         }
 
         &:hover {

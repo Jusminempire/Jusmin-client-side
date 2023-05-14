@@ -346,7 +346,6 @@ function Details() {
             <p className="p-number">
               <span>Spec :</span> {product?.productnumber}
             </p>
-
             <div>
               <p className="p-desc">
                 <span>Category :</span> {product?.productcategory}
@@ -376,22 +375,20 @@ function Details() {
               <span>Return Policy : </span>
               Product warrante lasts 48hrs after delievery notice.
             </p>
-            <div>
-              <iframe
-                // width="560"
-                // height="315"
-                style={{
-                  width: "100%",
-                  maxWidth: "500px",
-                  height: "255px",
-                  marginTop: "20px",
-                }}
-                src="https://www.youtube.com/embed/JOe0vsU_vzw"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-              ></iframe>
-            </div>
+            {product?.videourl && (
+              <div>
+                <iframe
+                  style={{
+                    width: "100%",
+                    maxWidth: "500px",
+                    height: "255px",
+                    marginTop: "20px",
+                  }}
+                  src={product?.videourl}
+                  allow="autoplay"
+                ></iframe>
+              </div>
+            )}
 
             <div className="product-qty-price-con">
               <div className="qty-con">
@@ -549,7 +546,7 @@ function Details() {
           <Advantages />
           {/* similar products */}
           <>
-            <h3 style={{ marginTop: "100px", color: "#3c91e6" }}>
+            <h3 style={{ marginTop: "100px", color: "#ff69b4" }}>
               {similarProducts.length > 0 && "SIMILAR PRODUCTS"}
             </h3>{" "}
             <div className="similar-products">
@@ -629,10 +626,6 @@ function SimilarProducts({
           {productoldprice && "₦ " + Number(productoldprice).toLocaleString()}
         </p>
       </div>
-
-      <Link href="/" className="addto-cart">
-        Add to cart
-      </Link>
     </div>
   );
 }

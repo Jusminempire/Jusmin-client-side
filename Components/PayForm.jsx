@@ -5,6 +5,7 @@ import { TiArrowBack } from "react-icons/ti";
 import { checkOut } from "../Services/functions";
 import { useRouter } from "next/router";
 import { Transaction } from "firebase/firestore";
+import Cookies from "js-cookie";
 
 function PayForm({
   product,
@@ -97,10 +98,34 @@ function PayForm({
   const [transactionDetails, setTransactionDetails] = useState();
   const router = useRouter();
   const [btnStatus, setBtnStatus] = useState(true);
-  const checkOutpayment = async () => {
-    const userData = await checkOut(productData, setTransactionDetails);
+  const checkOutpayment = () => {
+    const token = Cookies.get("JWTtoken");
+    axios
+      .post(
+        "http://localhost:2222/api/v1/transaction/posttransaction",
+        productData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.data.url) {
+          router.push(`${res.data.data.url}`);
+        }
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     setBtnStatus(false);
   };
+  // const checkOutpayment = async () => {
+  //   const userData = await checkOut(productData, setTransactionDetails);
+  //   setBtnStatus(false);
+  // };
   const cancelTransaction = async () => {
     setBtnStatus(false);
     router.push("/");

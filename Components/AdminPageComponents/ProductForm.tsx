@@ -299,6 +299,15 @@ function ProductForm() {
           <option value="promo">Promo</option>
           <option value="trending">Trending</option>
         </select>
+
+        {/* VIDEO URL */}
+        <label>Video URL</label>
+        <input
+          type="text"
+          placeholder="Enter Video URL"
+          {...register("videourl")}
+        />
+
         {/* PRODUCT DISCRIPTION */}
         <label>Product Description</label>
         <textarea
