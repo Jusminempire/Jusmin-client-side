@@ -32,6 +32,7 @@ export default function MyApp({ Component, pageProps }) {
     async function fetchSessionUser() {
       await logInGuest();
       const userData = await getSessionUser();
+      console.log(userData);
       if (userData && userData?.user) {
         setCartQty(userData?.user.cart.length);
       }

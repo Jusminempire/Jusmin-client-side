@@ -24,7 +24,7 @@ function orders() {
       const transactID = JSON.parse(storedRefID);
       const transactionStatusReturn = await transactionStatus(transactID);
       const userData = await getSessionUser();
-      console.log(userData);
+      // console.log(userData);
       setUserTransaction(userData?.user?.transaction);
       // console.log(userData);
 

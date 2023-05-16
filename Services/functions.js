@@ -302,7 +302,7 @@ export const transactionStatus = async (
 ) => {
   try {
     const response = await axios.post(
-      "http://localhost:2222/api/v1/transaction/getTransactionStatusInfo",
+      "https://jusmin.onrender.com/api/v1/transaction/getTransactionStatusInfo",
       {
         transactID: transactID,
       }
@@ -517,7 +517,7 @@ export const checkOut = async (productData, setTransactionDetails) => {
 export const logInGuest = async () => {
   let userInLocal = localStorage.getItem("userLoginDetails");
   let logInGuestUser = JSON.parse(userInLocal);
-  console.log(logInGuestUser);
+  // console.log(logInGuestUser);
 
   if (logInGuestUser) {
     axios

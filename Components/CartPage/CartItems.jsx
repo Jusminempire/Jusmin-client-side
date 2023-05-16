@@ -15,9 +15,16 @@ function CartItems({ triger, setTriger }) {
 
   useEffect(() => {
     const fetchSessionUser = async () => {
+      const existingItemsInLocal = localStorage.getItem("localCartItem")
+        ? JSON.parse(localStorage.getItem("localCartItem"))
+        : [];
       const userData = await getSessionUser(router);
       if (userData) {
-        setUserCart(userData.user.cart);
+        if (userData) {
+          setUserCart(userData.user.cart);
+        }
+      } else {
+        setUserCart(existingItemsInLocal);
       }
     };
     fetchSessionUser();
@@ -53,9 +60,9 @@ function CartItems({ triger, setTriger }) {
   const [payModal, setPayModal] = useState(false);
   const PayNow = async () => {
     const triger = await getSessionUser();
-    if (!triger) {
-      return setLoginTriger(true);
-    }
+    // if (!triger) {
+    //   return setLoginTriger(true);
+    // }
     setPayModal(true);
   };
 
@@ -173,6 +180,16 @@ function CartProducts({
   };
 
   const deleteCart = async (_id) => {
+    const existingItemsInLocal = localStorage.getItem("localCartItem")
+      ? JSON.parse(localStorage.getItem("localCartItem"))
+      : [];
+    const finalCart = [...existingItemsInLocal];
+
+    const newLocalCart = finalCart.filter((item) => item._id !== _id);
+    console.log(newLocalCart);
+    console.log(existingItemsInLocal);
+    localStorage.setItem("localCartItem", JSON.stringify(newLocalCart));
+    // window.location.reload();
     await setTriger(!triger);
     const delRes = await deleteCartItem(_id);
     if (delRes) {

@@ -27,7 +27,7 @@ function PayForm({
       .then((resp) => {
         const token = resp.data.data;
         Cookies.set("JWTtoken", token);
-        console.log("login");
+        // console.log("login");
       })
       .catch((error) => {
         console.log(error?.response?.data?.message);
@@ -125,7 +125,7 @@ function PayForm({
         .then((resp) => {
           let userInLocal = localStorage.getItem("userLoginDetails");
           let logInGuestUser = JSON.parse(userInLocal);
-          console.log(resp.data.status);
+          // console.log(resp.data.status);
           localStorage.setItem("userId", resp.data.data.userId);
           if (resp.data.status === "PENDING") {
             logIN(logInGuestUser);
@@ -162,7 +162,7 @@ function PayForm({
     const token = Cookies.get("JWTtoken");
     axios
       .post(
-        "http://localhost:2222/api/v1/transaction/posttransaction",
+        "https://jusmin.onrender.com/api/v1/transaction/posttransaction",
         productData,
         {
           headers: {
@@ -353,7 +353,7 @@ function PayForm({
                   className="checkout-btn"
                   onClick={() => cancelTransaction()}
                 >
-                  <button>CANCEL TRANSACTION</button>
+                  <button>Loadind ...</button>
                 </div>
               )}
             </div>

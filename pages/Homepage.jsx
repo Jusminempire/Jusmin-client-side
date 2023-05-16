@@ -116,8 +116,7 @@ const Homepage = () => {
         productExistInLocal === undefined
       ) {
         const localCart = [...existingItemsInLocal];
-        localCart.push(productData);
-
+        localCart.push({ ...productData, quantity: 1, _id: id });
         setLocalCartLength(localCart);
         localStorage.setItem("localCartItem", JSON.stringify(localCart));
         e.target.innerHTML = "Now In Cart";

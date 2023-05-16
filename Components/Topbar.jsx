@@ -42,12 +42,12 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
   const [localCartSession, setLocalCartSession] = useState([]);
   const [localCart, setLocalCart] = useState([]);
   useEffect(() => {
-    console.log("fgjh");
+    // console.log("fgjh");
     // get cart items in local storage
     const existingItemsInLocal = localStorage.getItem("localCartItem")
       ? JSON.parse(localStorage.getItem("localCartItem"))
       : [];
-    console.log(existingItemsInLocal);
+    // console.log(existingItemsInLocal);
     setLocalCart(existingItemsInLocal);
     async function fetchSessionUser() {
       const userData = await getSessionUser();
