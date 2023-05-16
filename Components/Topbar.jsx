@@ -12,7 +12,7 @@ import { GrUserAdmin } from "react-icons/gr";
 import { getSessionUser } from "../Services/functions";
 import { CartQuantityContext } from "../pages/_app";
 
-function Topbar({ dynamictriger, triga }) {
+function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
   // SET NAV LIST COLOR WITH PAGE PATH NAME
   const cartQty = useContext(CartQuantityContext).cartQty;
   const [active, setActive] = useState(0);
@@ -39,9 +39,19 @@ function Topbar({ dynamictriger, triga }) {
   const [name, setName] = useState(null);
   const [cartLength, setCartLength] = useState([]);
   const [session, setSession] = useState([]);
+  const [localCartSession, setLocalCartSession] = useState([]);
+  const [localCart, setLocalCart] = useState([]);
   useEffect(() => {
+    console.log("fgjh");
+    // get cart items in local storage
+    const existingItemsInLocal = localStorage.getItem("localCartItem")
+      ? JSON.parse(localStorage.getItem("localCartItem"))
+      : [];
+    console.log(existingItemsInLocal);
+    setLocalCart(existingItemsInLocal);
     async function fetchSessionUser() {
       const userData = await getSessionUser();
+      setLocalCartSession(userData);
       if (userData && userData.user) {
         setSession(userData);
         setName(userData?.user?.username);
@@ -49,7 +59,7 @@ function Topbar({ dynamictriger, triga }) {
       }
     }
     fetchSessionUser();
-  }, [router, triga, dynamictriger]);
+  }, [router, triga, dynamictriger, localCartTriger, cartQty]);
   // console.log(session.user.position);
   // LOGOUT
   const logOUT = () => {
@@ -83,7 +93,11 @@ function Topbar({ dynamictriger, triga }) {
             <Link href="/cart">
               <FaCartArrowDown className="icon" />
             </Link>
-            <sup>{cartQty}</sup>
+            {localCartSession ? (
+              <sup>{cartQty}</sup>
+            ) : (
+              <sup>{localCartLength?.length}</sup>
+            )}
           </div>
         </div>
       </div>

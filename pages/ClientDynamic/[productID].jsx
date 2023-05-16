@@ -217,56 +217,102 @@ function Details() {
 
   // ADD TO CART
   const [dynamictriger, setDynamicTriger] = useState(true);
-
+  // console.log(existingItemsInLocal);
+  const existingItemsInLocalDefault = localStorage.getItem("localCartItem")
+    ? JSON.parse(localStorage.getItem("localCartItem"))
+    : [];
+  // add to art
+  const [localCartLength, setLocalCartLength] = useState(
+    existingItemsInLocalDefault
+  );
   const [loginTriger, setLoginTriger] = useState(false);
 
   const addToCar = async () => {
+    // get cart items in local storage
+    const existingItemsInLocal = localStorage.getItem("localCartItem")
+      ? JSON.parse(localStorage.getItem("localCartItem"))
+      : [];
     setDynamicTriger(!dynamictriger);
     const productDoc = doc(db, "products", productID);
     const productSnapshot = await getDoc(productDoc);
     const productData = productSnapshot.data();
     setDynamicTriger(!dynamictriger);
-
+    productData.productID = productID;
     const triger = await getSessionUser();
 
-    if (!triger) {
-      return setLoginTriger(true);
-    }
+    // if (!triger) {
+    //   return setLoginTriger(true);
+    // }
 
-    const productExist = triger.userCart.find(
+    const productExist = triger?.userCart.find(
+      (item) => item.productID === productID
+    );
+    // check if product is already in local storage
+    const productExistInLocal = existingItemsInLocal?.find(
       (item) => item.productID === productID
     );
 
-    if (
-      (productExist && !productExist.productID) ||
-      productExist === undefined
-    ) {
-      const cartResponse = await addToCart(productData, productID);
-      if (cartResponse === "SUCCESS") {
-        const userData = await getSessionUser();
-        setCartQty(userData?.user.cart.length);
+    if (triger) {
+      if (
+        (productExist && !productExist.productID) ||
+        productExist === undefined
+      ) {
+        const cartResponse = await addToCart(productData, id);
+        // console.log("cartResponse");
+        if (cartResponse === "SUCCESS") {
+          const userData = await getSessionUser();
+          setCartQty(userData?.user.cart.length);
+          // e.target.innerHTML = "Now In Cart";
+          notifications.show({
+            title: "Notification",
+            message: "Successful , Item added to cart",
+          });
+        }
+      } else {
+        notifications.show({
+          title: "Notification",
+          message: "Failed, Item already in cart",
+          color: "red",
+        });
+        // e.target.innerHTML = "Already In Cart";
+      }
+    } else {
+      if (
+        (productExistInLocal && !productExistInLocal.productID) ||
+        productExistInLocal === undefined
+      ) {
+        const localCart = [...existingItemsInLocal];
+        localCart.push(productData);
+
+        setLocalCartLength(localCart);
+        localStorage.setItem("localCartItem", JSON.stringify(localCart));
+        // e.target.innerHTML = "Now In Cart";
         notifications.show({
           title: "Notification",
           message: "Successful , Item added to cart",
         });
+      } else {
+        notifications.show({
+          title: "Notification",
+          message: "Failed, Item already in cart",
+          color: "red",
+        });
+        // e.target.innerHTML = "Already In Cart";
       }
-    } else
-      notifications.show({
-        title: "Notification",
-        message: "Failed, Item already in cart",
-        color: "red",
-      });
+    }
 
     setDynamicTriger(!dynamictriger);
   };
 
   // PAY FUNCTION
   const [payModal, setPayModal] = useState(false);
+  const [sessionUser, setSessionUser] = useState();
   const PayNow = async () => {
     const triger = await getSessionUser();
-    if (!triger) {
-      return setLoginTriger(true);
-    }
+    setSessionUser(triger);
+    // if (!triger) {
+    //   return setLoginTriger(true);
+    // }
     setPayModal(true);
   };
 
@@ -284,10 +330,11 @@ function Details() {
           product={product}
           count={count}
           priceNumber={priceNumber}
+          sessionUser={sessionUser}
         />
       )}
       <Group position="center"></Group>
-      <Topbar dynamictriger={dynamictriger} />
+      <Topbar dynamictriger={dynamictriger} localCartLength={localCartLength} />
       <div className="client-single-product">
         <div className="single-product">
           <div className="top-container">

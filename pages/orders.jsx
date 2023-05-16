@@ -13,21 +13,24 @@ function orders() {
   const router = useRouter();
   const [userTransaction, setUserTransaction] = useState([]);
 
-  // get user
-  // const storedRefID = localStorage.getItem("refID");
-  // const refID = JSON.parse(storedRefID);
+  useEffect(() => {
+    const userNam = async () => {};
+    userNam();
+  }, [router]);
+
   useEffect(() => {
     const userName = async () => {
+      const storedRefID = localStorage.getItem("transactID");
+      const transactID = JSON.parse(storedRefID);
+      const transactionStatusReturn = await transactionStatus(transactID);
       const userData = await getSessionUser();
-      // console.log(refID.userData, refID.transactID);
-      // await transactionStatus(refID.userData, refID.transactID);
-
+      console.log(userData);
       setUserTransaction(userData?.user?.transaction);
       // console.log(userData);
 
-      if (userData?.user.block === true) {
-        router.push("/Login");
-      }
+      // if (userData?.user.block === true) {
+      //   router.push("/Login");
+      // }
     };
     userName();
   }, [router]);

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { TiArrowBack } from "react-icons/ti";
-import { checkOut } from "../Services/functions";
+import { checkOut, getSessionUser, registerUser } from "../Services/functions";
 import { useRouter } from "next/router";
 import { Transaction } from "firebase/firestore";
 import Cookies from "js-cookie";
@@ -14,7 +14,25 @@ function PayForm({
   setPayModal,
   productsArray,
   totalAmount,
+  sessionUser,
 }) {
+  // login
+  const logIN = async (logInGuestUser) => {
+    console.log(logInGuestUser);
+    axios
+      .post("https://jusmin.onrender.com/api/v1/userverification/loginuser", {
+        useremail: logInGuestUser.useremail,
+        password: logInGuestUser.password,
+      })
+      .then((resp) => {
+        const token = resp.data.data;
+        Cookies.set("JWTtoken", token);
+        console.log("login");
+      })
+      .catch((error) => {
+        console.log(error?.response?.data?.message);
+      });
+  };
   // useform config
   const {
     register,
@@ -82,8 +100,41 @@ function PayForm({
       setProductData(cartItemDetails);
     }
 
-    // console.log(cartItemDetails);
-    //
+    // localStorage.setItem("localCartItem", JSON.stringify(localCart));
+    if (data.username) {
+      // const userLoginDetails = {
+      //   useremail: data.useremail.toLowerCase(),
+      //   password: "guest",
+      // };
+
+      const guestUser = {
+        username: data.username.toLowerCase() + " " + "(guest)",
+        useremail: data.useremail.toLowerCase() + Date.now(),
+        position: "guest",
+        policy: true,
+        userphonenumber: data.userphonenumber,
+        password: "guest",
+        verified: true,
+      };
+      localStorage.setItem("userLoginDetails", JSON.stringify(guestUser));
+      axios
+        .post(
+          "https://jusmin.onrender.com/api/v1/userverification/registeruser",
+          guestUser
+        )
+        .then((resp) => {
+          let userInLocal = localStorage.getItem("userLoginDetails");
+          let logInGuestUser = JSON.parse(userInLocal);
+          console.log(resp.data.status);
+          localStorage.setItem("userId", resp.data.data.userId);
+          if (resp.data.status === "PENDING") {
+            logIN(logInGuestUser);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data.error);
+        });
+    }
 
     setShowConfirmDetails(true);
   };
@@ -97,6 +148,15 @@ function PayForm({
   // CHECKOUT
   const [transactionDetails, setTransactionDetails] = useState();
   const router = useRouter();
+
+  // useEffect(() => {
+  //   const getSession = async () => {
+  //     const triger = await getSessionUser();
+  //     console.log(triger);
+  //   };
+  //   getSession();
+  // }, [router]);
+  // console.log(sessionUser ?? "ghjgh");
   const [btnStatus, setBtnStatus] = useState(true);
   const checkOutpayment = () => {
     const token = Cookies.get("JWTtoken");
@@ -111,6 +171,12 @@ function PayForm({
         }
       )
       .then((res) => {
+        localStorage.setItem(
+          "transactID",
+          JSON.stringify(res.data.data.paymentIntent.id)
+        );
+
+        console.log(res.data.data.paymentIntent.id);
         if (res.data.data.url) {
           router.push(`${res.data.data.url}`);
         }
@@ -122,6 +188,7 @@ function PayForm({
 
     setBtnStatus(false);
   };
+
   // const checkOutpayment = async () => {
   //   const userData = await checkOut(productData, setTransactionDetails);
   //   setBtnStatus(false);
@@ -292,15 +359,86 @@ function PayForm({
             </div>
           )}{" "}
           {/* PAYMENT FORM*/}
-          <form onSubmit={handleSubmit(onSubmitBanner)}>
-            {/* ADDRESS */}
-
+          <form
+            onSubmit={handleSubmit(onSubmitBanner)}
+            className="payment-form"
+          >
+            {/* ADDRESS */}{" "}
             <label ref={addressRef}>Enter delivery details</label>
             {/* STREET */}
-            <img
-              src="https://res.cloudinary.com/isreal/image/upload/v1670407854/banking%20app/master_visa_verve_oakngi.png"
-              alt="img"
-            />
+            {sessionUser ? (
+              ""
+            ) : (
+              <>
+                {" "}
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Whats's your name ?"
+                    {...register("username", { required: true })}
+                  />
+                  {errors.username && (
+                    <span
+                      className="errror-msg"
+                      style={{
+                        fontSize: "12px",
+                        fontStyle: "italic",
+                        color: "red",
+                      }}
+                    >
+                      Kindly Enter your name
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Whats's your email address ?"
+                    {...register("useremail", { required: true })}
+                  />
+                  {errors.useremail && (
+                    <span
+                      className="errror-msg"
+                      style={{
+                        fontSize: "12px",
+                        fontStyle: "italic",
+                        color: "red",
+                      }}
+                    >
+                      Kindly Enter your name
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="number"
+                    placeholder="Whats's your phone number ?"
+                    {...register("userphonenumber", { required: true })}
+                  />
+                  {errors.userphonenumber && (
+                    <span
+                      className="errror-msg"
+                      style={{
+                        fontSize: "12px",
+                        fontStyle: "italic",
+                        color: "red",
+                      }}
+                    >
+                      Kindly Enter your phone number
+                    </span>
+                  )}
+                </div>
+              </>
+            )}{" "}
+            {/* <input
+              type="submit"
+              className="submit-btn"
+              //   value={loadingBanner ? "Uploading..." : "Upload Banner"}
+            /> */}
+            {/* </form> */}
+            {/* PAYMENT FORM*/}
+            {/* <form onSubmit={handleSubmit(onSubmitBanner)}> */}
+            {/* ADDRESS */}
             <div>
               <input
                 type="text"
@@ -320,9 +458,7 @@ function PayForm({
                 </span>
               )}
             </div>
-
             {/* STATE */}
-
             <div>
               <select {...register("state", { required: true })}>
                 {product?.productcategory === "Software" ? (
@@ -387,7 +523,6 @@ function PayForm({
                 </span>
               )}
             </div>
-
             {/* home delivery */}
             <div>
               <select {...register("homedelivery", { required: true })}>
@@ -426,11 +561,14 @@ function PayForm({
                 {...register("anyinfo")}
               />
             </div>
-
             <input
               type="submit"
               className="submit-btn"
               //   value={loadingBanner ? "Uploading..." : "Upload Banner"}
+            />
+            <img
+              src="https://res.cloudinary.com/djtneu2rh/image/upload/v1684191585/WhatsApp_Image_2023-05-15_at_11.59.01_PM-removebg-preview_o2anuk.png"
+              alt="img"
             />
           </form>
         </div>

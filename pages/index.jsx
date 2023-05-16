@@ -9,6 +9,7 @@ import Homepage from "./Homepage";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+ 
   return (
     <section className="oo">
       <Head>

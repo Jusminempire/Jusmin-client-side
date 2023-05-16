@@ -50,50 +50,103 @@ const Homepage = () => {
 
   const setCartQty = useContext(CartQuantityContext).setCartQty;
 
+  // console.log(existingItemsInLocal);
+  const existingItemsInLocalDefault = localStorage.getItem("localCartItem")
+    ? JSON.parse(localStorage.getItem("localCartItem"))
+    : [];
   // add to art
+  const [localCartLength, setLocalCartLength] = useState(
+    existingItemsInLocalDefault
+  );
+
+  const [localCartTriger, setLocalCartTriger] = useState(true);
   const addToCar = async (e, id) => {
+    setLocalCartTriger(!localCartTriger);
+    // get cart items in local storage
+    const existingItemsInLocal = localStorage.getItem("localCartItem")
+      ? JSON.parse(localStorage.getItem("localCartItem"))
+      : [];
+
     e.target.innerHTML = "Loading ...";
     const productDoc = doc(db, "products", id);
     const productSnapshot = await getDoc(productDoc);
     const productData = productSnapshot.data();
-    const triger = await getSessionUser();
+    const userSession = await getSessionUser();
+    productData.productID = id;
+    // if (!userSession) {
+    //   return setLoginTriger(true);
+    // }
+    // check if product is already in user cart
+    const productExist = userSession?.userCart.find(
+      (item) => item.productID === id
+    );
 
-    if (!triger) {
-      return setLoginTriger(true);
-    }
-    const productExist = triger?.userCart.find((item) => item.productID === id);
+    // check if product is already in local storage
+    const productExistInLocal = existingItemsInLocal?.find(
+      (item) => item.productID === id
+    );
 
-    if (
-      (productExist && !productExist.productID) ||
-      productExist === undefined
-    ) {
-      const cartResponse = await addToCart(productData, id);
-      if (cartResponse === "SUCCESS") {
-        const userData = await getSessionUser();
-        setCartQty(userData?.user.cart.length);
+    if (userSession) {
+      if (
+        (productExist && !productExist.productID) ||
+        productExist === undefined
+      ) {
+        const cartResponse = await addToCart(productData, id);
+        // console.log("cartResponse");
+        if (cartResponse === "SUCCESS") {
+          const userData = await getSessionUser();
+          setCartQty(userData?.user.cart.length);
+          e.target.innerHTML = "Now In Cart";
+          notifications.show({
+            title: "Notification",
+            message: "Successful , Item added to cart",
+          });
+        }
+      } else {
+        notifications.show({
+          title: "Notification",
+          message: "Failed, Item already in cart",
+          color: "red",
+        });
+        e.target.innerHTML = "Already In Cart";
+      }
+    } else {
+      if (
+        (productExistInLocal && !productExistInLocal.productID) ||
+        productExistInLocal === undefined
+      ) {
+        const localCart = [...existingItemsInLocal];
+        localCart.push(productData);
+
+        setLocalCartLength(localCart);
+        localStorage.setItem("localCartItem", JSON.stringify(localCart));
         e.target.innerHTML = "Now In Cart";
         notifications.show({
           title: "Notification",
           message: "Successful , Item added to cart",
         });
+      } else {
+        notifications.show({
+          title: "Notification",
+          message: "Failed, Item already in cart",
+          color: "red",
+        });
+        e.target.innerHTML = "Already In Cart";
       }
-    } else {
-      notifications.show({
-        title: "Notification",
-        message: "Failed, Item already in cart",
-        color: "red",
-      });
-      e.target.innerHTML = "Already In Cart";
     }
-    if (!triger) {
-      return setLoginTriger(true);
-    }
+    setLocalCartTriger(!localCartTriger);
+    // if (!userSession) {
+    //   return setLoginTriger(true);
+    // }
   };
   // console.log(cartBtnLoading);
   return (
     <div className="homepage-main-con" style={{ position: "relative" }}>
       {/* TOPBAR */}
-      <Topbar />
+      <Topbar
+        localCartTriger={localCartTriger}
+        localCartLength={localCartLength}
+      />
       {/* BANNER */}
 
       {products.length < 1 ? (

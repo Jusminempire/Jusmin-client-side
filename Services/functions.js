@@ -105,7 +105,7 @@ export const registerUser = async (
       user
     )
     .then((resp) => {
-      // console.log(resp.data.status);
+      console.log(resp.data.status);
       localStorage.setItem("userId", resp.data.data.userId);
       setShowOTPForm(true);
       setShowResendOTPForm(false);
@@ -290,27 +290,31 @@ const updateTransaction = async (transactID, transactionStatus) => {
     });
 };
 // jhk
+
+// Usage: Call the function with the payment intent ID
+// getTransactionStatus("pi_3N83IELRBfcQsgMs09kcVVQQ");
+
 // CHECK TRANSACTION STATUS
 export const transactionStatus = async (
-  userData,
-  transactID,
-  setGetTransactionDetails
+  // userData,
+  transactID
+  // setGetTransactionDetails
 ) => {
   try {
-    const response = await axios.get(
-      `https://api.paystack.co/transaction/verify/${userData?.paystackRef}`,
+    const response = await axios.post(
+      "http://localhost:2222/api/v1/transaction/getTransactionStatusInfo",
       {
-        headers: {
-          Authorization:
-            "Bearer sk_test_3f383f1af75a39537da652b48d2325b2a0c4ba26",
-        },
+        transactID: transactID,
       }
     );
-    const transactionStatus = response.data.data.status;
-    console.log(transactionStatus);
-    updateTransaction(transactID, transactionStatus);
+    // console.log(response.data.status);
+
+    // const transactionStatus = response.data.data.status;
+    // console.log(transactionStatus);
+    // console.log(response);
+    // updateTransaction(transactID, transactionStatus);
     // setGetTransactionDetails(response.data);
-    // return response.data;
+    return response.data.status;
   } catch (error) {
     console.log(error);
   }
@@ -506,4 +510,28 @@ export const checkOut = async (productData, setTransactionDetails) => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+// login guest
+
+export const logInGuest = async () => {
+  let userInLocal = localStorage.getItem("userLoginDetails");
+  let logInGuestUser = JSON.parse(userInLocal);
+  console.log(logInGuestUser);
+
+  if (logInGuestUser) {
+    axios
+      .post("https://jusmin.onrender.com/api/v1/userverification/loginuser", {
+        useremail: logInGuestUser.useremail,
+        password: logInGuestUser.password,
+      })
+      .then((resp) => {
+        const token = resp.data.data;
+        Cookies.set("JWTtoken", token);
+      })
+      .catch((error) => {
+        setErrMsg(error?.response?.data?.message);
+        setLoading(false);
+      });
+  }
 };
