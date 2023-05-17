@@ -58,8 +58,10 @@ function CartItems({ triger, setTriger }) {
   // PAY FUNCTION
   const [loginTriger, setLoginTriger] = useState(false);
   const [payModal, setPayModal] = useState(false);
+  const [getUserSession, setGetUserSession] = useState([]);
   const PayNow = async () => {
     const triger = await getSessionUser();
+    setGetUserSession(triger);
     // if (!triger) {
     //   return setLoginTriger(true);
     // }
@@ -78,7 +80,8 @@ function CartItems({ triger, setTriger }) {
           setPayModal={setPayModal}
           productsArray={productsArray}
           totalAmount={totalAmount}
-          // priceNumber={priceNumber}
+          payModal={payModal}
+          getUserSession={getUserSession}
         />
       )}
       <button onClick={goBack} className="go-back">

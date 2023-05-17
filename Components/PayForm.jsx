@@ -15,6 +15,8 @@ function PayForm({
   productsArray,
   totalAmount,
   sessionUser,
+  getUserSession,
+  payModal,
 }) {
   // login
   const logIN = async (logInGuestUser) => {
@@ -33,6 +35,17 @@ function PayForm({
         console.log(error?.response?.data?.message);
       });
   };
+
+  // get user session
+  const [getUserSessiond, setGetUserSessiond] = useState(false);
+  useEffect(() => {
+    const getSession = async () => {
+      if (getUserSession || sessionUser) {
+        setGetUserSessiond(true);
+      }
+    };
+    getSession();
+  }, [payModal]);
   // useform config
   const {
     register,
@@ -102,11 +115,6 @@ function PayForm({
 
     // localStorage.setItem("localCartItem", JSON.stringify(localCart));
     if (data.username) {
-      // const userLoginDetails = {
-      //   useremail: data.useremail.toLowerCase(),
-      //   password: "guest",
-      // };
-
       const guestUser = {
         username: data.username.toLowerCase() + " " + "(guest)",
         useremail: data.useremail.toLowerCase() + Date.now(),
@@ -117,6 +125,8 @@ function PayForm({
         verified: true,
       };
       localStorage.setItem("userLoginDetails", JSON.stringify(guestUser));
+
+      // register the guest
       axios
         .post(
           "https://jusmin.onrender.com/api/v1/userverification/registeruser",
@@ -129,12 +139,35 @@ function PayForm({
           localStorage.setItem("userId", resp.data.data.userId);
           if (resp.data.status === "PENDING") {
             logIN(logInGuestUser);
+            console.log("logined");
           }
         })
         .catch((error) => {
           console.log(error.response.data.error);
         });
     }
+
+    // login the user
+    // let userInLocal = localStorage.getItem("userLoginDetails");
+    // let logInGuestUser = JSON.parse(userInLocal);
+    // // console.log(logInGuestUser);
+
+    // if (logInGuestUser) {
+    //   axios
+    //     .post("https://jusmin.onrender.com/api/v1/userverification/loginuser", {
+    //       useremail: logInGuestUser.useremail,
+    //       password: logInGuestUser.password,
+    //     })
+    //     .then((resp) => {
+    //       const token = resp.data.data;
+    //       Cookies.set("JWTtoken", token);
+    //       console.log("loged in");
+    //     })
+    //     .catch((error) => {
+    //       console.log(error?.response?.data?.message);
+    //       console.log(false);
+    //     });
+    // }
 
     setShowConfirmDetails(true);
   };
@@ -149,14 +182,6 @@ function PayForm({
   const [transactionDetails, setTransactionDetails] = useState();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const getSession = async () => {
-  //     const triger = await getSessionUser();
-  //     console.log(triger);
-  //   };
-  //   getSession();
-  // }, [router]);
-  // console.log(sessionUser ?? "ghjgh");
   const [btnStatus, setBtnStatus] = useState(true);
   const checkOutpayment = () => {
     const token = Cookies.get("JWTtoken");
@@ -366,7 +391,7 @@ function PayForm({
             {/* ADDRESS */}{" "}
             <label ref={addressRef}>Enter delivery details</label>
             {/* STREET */}
-            {sessionUser ? (
+            {getUserSessiond ? (
               ""
             ) : (
               <>

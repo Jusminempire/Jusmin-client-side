@@ -530,8 +530,8 @@ export const logInGuest = async () => {
         Cookies.set("JWTtoken", token);
       })
       .catch((error) => {
-        setErrMsg(error?.response?.data?.message);
-        setLoading(false);
+        console.log(error?.response?.data?.message);
+        console.log(false);
       });
   }
 };

@@ -257,7 +257,7 @@ function Details() {
         (productExist && !productExist.productID) ||
         productExist === undefined
       ) {
-        const cartResponse = await addToCart(productData, id);
+        const cartResponse = await addToCart(productData, productID);
         // console.log("cartResponse");
         if (cartResponse === "SUCCESS") {
           const userData = await getSessionUser();
@@ -282,7 +282,7 @@ function Details() {
         productExistInLocal === undefined
       ) {
         const localCart = [...existingItemsInLocal];
-        localCart.push(productData);
+        localCart.push({ ...productData, quantity: 1, _id: productID });
 
         setLocalCartLength(localCart);
         localStorage.setItem("localCartItem", JSON.stringify(localCart));
