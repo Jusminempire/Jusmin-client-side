@@ -262,16 +262,17 @@ const singleTransaction = async (transactID) => {
   // console.log(data);
   return data.data;
 };
+
 export const singleTransactionFetcher = (transactID) =>
   singleTransaction(transactID);
 
 // UPDATE TRANACTION STATUS
-const updateTransaction = async (transactID, transactionStatus) => {
+const updateTransaction = async (transactionStatus, userID) => {
   const token = Cookies.get("JWTtoken");
   await axios
     .patch(
       "https://jusmin.onrender.com/api/v1/transaction/updatetransaction/" +
-        `${transactID}`,
+        `${userID}`,
       {
         transactionstatus: transactionStatus,
       },
@@ -283,21 +284,17 @@ const updateTransaction = async (transactID, transactionStatus) => {
     )
 
     .then((resp) => {
-      // console.log(resp);
+      console.log(resp);
     })
     .catch((err) => {
       throw err;
     });
 };
-// jhk
-
-// Usage: Call the function with the payment intent ID
-// getTransactionStatus("pi_3N83IELRBfcQsgMs09kcVVQQ");
 
 // CHECK TRANSACTION STATUS
 export const transactionStatus = async (
-  // userData,
-  transactID
+  transactID,
+  userID
   // setGetTransactionDetails
 ) => {
   try {
@@ -307,12 +304,12 @@ export const transactionStatus = async (
         transactID: transactID,
       }
     );
-    // console.log(response.data.status);
+    // console.log(response.data.status, userID);
 
-    // const transactionStatus = response.data.data.status;
+    const transactionStatus = response.data.status;
     // console.log(transactionStatus);
     // console.log(response);
-    // updateTransaction(transactID, transactionStatus);
+    updateTransaction(transactionStatus, userID);
     // setGetTransactionDetails(response.data);
     return response.data.status;
   } catch (error) {

@@ -22,7 +22,7 @@ function orders() {
     const userName = async () => {
       const storedRefID = localStorage.getItem("transactID");
       const transactID = JSON.parse(storedRefID);
-      const transactionStatusReturn = await transactionStatus(transactID);
+      // const transactionStatusReturn = await transactionStatus(transactID);
       const userData = await getSessionUser();
       // console.log(userData);
       setUserTransaction(userData?.user?.transaction);
@@ -39,10 +39,20 @@ function orders() {
   const [loginTriger, setLoginTriger] = useState(false);
   useEffect(() => {
     async function fetchSessionUser() {
+      const transactID = localStorage.getItem("transactID")
+        ? JSON.parse(localStorage.getItem("transactID"))
+        : [];
+      console.log(transactID);
       const userSession = await getSessionUser(router);
-      if (!userSession) {
-        return setLoginTriger(true);
-      }
+
+      await transactionStatus(
+        transactID?.transactID,
+        transactID?.transactionID
+      );
+
+      // if (!userSession) {
+      //   return setLoginTriger(true);
+      // }
     }
     fetchSessionUser();
   }, [router]);

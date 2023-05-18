@@ -147,28 +147,6 @@ function PayForm({
         });
     }
 
-    // login the user
-    // let userInLocal = localStorage.getItem("userLoginDetails");
-    // let logInGuestUser = JSON.parse(userInLocal);
-    // // console.log(logInGuestUser);
-
-    // if (logInGuestUser) {
-    //   axios
-    //     .post("https://jusmin.onrender.com/api/v1/userverification/loginuser", {
-    //       useremail: logInGuestUser.useremail,
-    //       password: logInGuestUser.password,
-    //     })
-    //     .then((resp) => {
-    //       const token = resp.data.data;
-    //       Cookies.set("JWTtoken", token);
-    //       console.log("loged in");
-    //     })
-    //     .catch((error) => {
-    //       console.log(error?.response?.data?.message);
-    //       console.log(false);
-    //     });
-    // }
-
     setShowConfirmDetails(true);
   };
   //   console.log(showConfirmDetails);
@@ -181,7 +159,6 @@ function PayForm({
   // CHECKOUT
   const [transactionDetails, setTransactionDetails] = useState();
   const router = useRouter();
-
   const [btnStatus, setBtnStatus] = useState(true);
   const checkOutpayment = () => {
     const token = Cookies.get("JWTtoken");
@@ -196,16 +173,15 @@ function PayForm({
         }
       )
       .then((res) => {
-        localStorage.setItem(
-          "transactID",
-          JSON.stringify(res.data.data.paymentIntent.id)
-        );
+        const transactionID = {
+          transactID: res.data.data.paymentIntent.id,
+          transactionID: res.data.data.Transaction._id,
+        };
+        localStorage.setItem("transactID", JSON.stringify(transactionID));
 
-        console.log(res.data.data.paymentIntent.id);
-        if (res.data.data.url) {
-          router.push(`${res.data.data.url}`);
-        }
-        console.log(res);
+        // if (res.data.data.url) {
+        //   router.push(`${res.data.data.url}`);
+        // }
       })
       .catch((err) => {
         console.log(err);
@@ -214,10 +190,6 @@ function PayForm({
     setBtnStatus(false);
   };
 
-  // const checkOutpayment = async () => {
-  //   const userData = await checkOut(productData, setTransactionDetails);
-  //   setBtnStatus(false);
-  // };
   const cancelTransaction = async () => {
     setBtnStatus(false);
     router.push("/");
