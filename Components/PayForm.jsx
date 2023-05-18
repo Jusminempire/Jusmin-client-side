@@ -179,9 +179,9 @@ function PayForm({
         };
         localStorage.setItem("transactID", JSON.stringify(transactionID));
 
-        // if (res.data.data.url) {
-        //   router.push(`${res.data.data.url}`);
-        // }
+        if (res.data.data.url) {
+          router.push(`${res.data.data.url}`);
+        }
       })
       .catch((err) => {
         console.log(err);
