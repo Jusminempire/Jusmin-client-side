@@ -13,10 +13,10 @@ function orders() {
   const router = useRouter();
   const [userTransaction, setUserTransaction] = useState([]);
 
-  useEffect(() => {
-    const userNam = async () => {};
-    userNam();
-  }, [router]);
+  // useEffect(() => {
+  //   const userNam = async () => {};
+  //   userNam();
+  // }, [router]);
 
   useEffect(() => {
     const userName = async () => {
@@ -28,34 +28,15 @@ function orders() {
       setUserTransaction(userData?.user?.transaction);
       // console.log(userData);
 
-      // if (userData?.user.block === true) {
-      //   router.push("/Login");
-      // }
+      if (userData?.user.block === true) {
+        router.push("/Login");
+      }
     };
     userName();
   }, [router]);
 
   //  rerout to login for unregustered users
   const [loginTriger, setLoginTriger] = useState(false);
-  useEffect(() => {
-    async function fetchSessionUser() {
-      const transactID = localStorage.getItem("transactID")
-        ? JSON.parse(localStorage.getItem("transactID"))
-        : [];
-      console.log(transactID);
-      const userSession = await getSessionUser(router);
-
-      await transactionStatus(
-        transactID?.transactID,
-        transactID?.transactionID
-      );
-
-      // if (!userSession) {
-      //   return setLoginTriger(true);
-      // }
-    }
-    fetchSessionUser();
-  }, [router]);
 
   // ...................................
   // const [countries, setCountries] = useState([]);

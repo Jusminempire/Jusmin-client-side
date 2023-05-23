@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 // icon
 import { FaMoneyCheck } from "react-icons/fa";
+import { IoIosClose } from "react-icons/io";
 import { useRouter } from "next/router";
-import { transactionStatus } from "../../Services/functions";
+import { getSessionUser, transactionStatus } from "../../Services/functions";
 import Loader from "../Loader";
+import { BsCheck2All, BsFillPatchCheckFill } from "react-icons/bs";
+import { GrFormClose } from "react-icons/gr";
 function Orders({ userTransaction }) {
   const router = useRouter();
   const orderStatus = ["All", "Processing", "Transit", "Delvered"];
@@ -28,19 +31,39 @@ function Orders({ userTransaction }) {
   }, [category, userTransaction, router]);
 
   // get user
-  const storedRefID = localStorage.getItem("refID");
-  const refID = JSON.parse(storedRefID);
-  // const [getTransactionDetails, setGetTransactionDetails] = useState({});
+  // const storedRefID = localStorage.getItem("refID");
+  // const refID = JSON.parse(storedRefID);
+  // useEffect(() => {
+  //   const userName = async () => {
+  //     await transactionStatus(
+  //       refID?.userData,
+  //       refID?.transactID
+  //       // setGetTransactionDetails
+  //     );
+  //   };
+  //   userName();
+  // }, [router, userTransaction]);
+
   useEffect(() => {
-    const userName = async () => {
-      await transactionStatus(
-        refID?.userData,
-        refID?.transactID
-        // setGetTransactionDetails
+    async function fetchSessionUser() {
+      const transactID = localStorage.getItem("transactID")
+        ? JSON.parse(localStorage.getItem("transactID"))
+        : [];
+      // console.log(transactID);
+      const userSession = await getSessionUser(router);
+      // console.log(userSession);
+
+      const tStatus = await transactionStatus(
+        transactID?.transactID,
+        transactID?.transactionID
       );
-    };
-    userName();
-  }, [router, userTransaction]);
+      // console.log(tStatus);
+      // if (!userSession) {
+      //   return setLoginTriger(true);
+      // }
+    }
+    fetchSessionUser();
+  }, [router]);
   return (
     <>
       {products ? (
@@ -114,13 +137,9 @@ function TransactionReceipt({
             <span
               style={{
                 color: (() => {
-                  switch (transactionstatus) {
-                    case "pending":
-                      return "#db504a";
+                  switch (transactionstatus.toLowerCase()) {
                     case "success":
-                      return "#3d91e6";
-                    case "failed":
-                      return "#db504a";
+                      return "#2c7a2c";
                     default:
                       return "#db504a";
                   }
@@ -129,6 +148,19 @@ function TransactionReceipt({
               }}
             >
               {transactionstatus.toLowerCase()}
+              {/* {transactionstatus.toLowerCase() === "success" ? (
+                <>
+                  {transactionstatus.toLowerCase()}
+                  <BsCheck2All />
+                </>
+              ) : (
+                <>
+                  {transactionstatus.toLowerCase() ===
+                    "requires_payment_method" && "Incomplete"}{" "}
+                  <br />
+                  <sub>({transactionstatus.toLowerCase()})</sub> <IoIosClose />
+                </>
+              )} */}
             </span>
           </p>
         </div>
@@ -143,7 +175,7 @@ function TransactionReceipt({
                   case "Transit":
                     return "#ffce26";
                   case "Delivered":
-                    return "#3d91e6";
+                    return "#2c7a2c";
                   default:
                     return "#3d91e6";
                 }

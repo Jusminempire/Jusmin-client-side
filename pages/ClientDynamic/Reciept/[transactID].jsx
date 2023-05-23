@@ -16,6 +16,7 @@ import useSWR from "swr";
 import Loader from "../../../Components/Loader";
 // const API = "http://localhost:1234/api/v1/transaction/getsingletransaction";
 function transactionrecipt() {
+  const adminEmail = "jusminempire@gmail.com";
   const router = useRouter();
   const { transactID } = router.query;
   const {
@@ -23,8 +24,9 @@ function transactionrecipt() {
     isLoading,
     error,
   } = useSWR(transactID ? transactID : null, singleTransactionFetcher);
-  // console.log(userData);
+  console.log(userData);
   // FETCH TRANSACTION STATUS
+  console.log(userData);
   useEffect(() => {
     async function fetchSessionUser() {
       if (userData) {
@@ -71,7 +73,7 @@ function transactionrecipt() {
           </button>
           <h3>Transaction Receipt</h3>
           <p className="paystackRef">
-            Order Ref: <span>{userData?.paystackRef}</span>
+            Order Ref: <span>{userData?.orderRef}</span>
           </p>
           <p>
             {userData?.transactionstatus === "Pending"
@@ -121,18 +123,16 @@ function transactionrecipt() {
               <span
                 style={{
                   color: (() => {
-                    switch (userData?.transactionstatus) {
-                      case "abandoned":
-                        return "#db504a";
+                    switch (userData?.transactionstatus.toLowerCase()) {
                       case "success":
-                        return "#3d91e6";
+                        return "#2c7a2c";
                       default:
                         return "#db504a";
                     }
                   })(),
                 }}
               >
-                {userData?.transactionstatus}
+                {userData?.transactionstatus.toLowerCase()}
               </span>
             </div>
             <div className="transaction-status" style={{ width: "95%" }}>
@@ -146,7 +146,7 @@ function transactionrecipt() {
                       case "Transit":
                         return "#ffce26";
                       case "Delivered":
-                        return "#3d91e6";
+                        return "#2c7a2c";
                       default:
                         return "#3d91e6";
                     }
@@ -174,7 +174,7 @@ function transactionrecipt() {
             </div>
             <div className="qr-code">
               <QRCode
-                value={`https://elegantstores-client-side.vercel.app/Adminpage/transaction/${
+                value={`https://jusmin.vercel.app/Adminpage/transaction/${
                   transactID && transactID
                 }`}
               />
@@ -183,10 +183,7 @@ function transactionrecipt() {
 
           <div className="download-page">
             <p onClick={() => saveAsImage(document.body)}>Print page</p>
-            <a
-              href="https://wa.me/+2348036027773?text=Hello, I am a customer on your platfor 'ELEGANT COLLECTION' and i need your support."
-              target="_blank"
-            >
+            <a href={`mailto:${adminEmail}`} target="_blank">
               {" "}
               <p>Make a report</p>
             </a>

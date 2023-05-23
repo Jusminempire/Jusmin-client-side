@@ -28,7 +28,7 @@ $font-light: #666;
 $bg-gray: #eee;
 $bg-dark-gray: #444;
 $bg-dark: #342e37;
-$txt-blue:  #ff69b4;
+$txt-blue: #ff69b4;
 $txt-light-blue: #cfe8ff;
 
 @mixin flexDisplay($justifyProp, $alignProp, $flexDirection) {
@@ -64,7 +64,6 @@ $txt-light-blue: #cfe8ff;
 
 // orderpage main container
 .order-page-main-con {
-  // border: 2px solid red;
   width: 100%;
   background: white;
   margin-top: 50px;
@@ -79,8 +78,10 @@ $txt-light-blue: #cfe8ff;
     border: 1px solid rgba(128, 128, 128, 0.132);
     margin: 0 auto;
     margin-top: 10px;
-    max-width: 1200px;
+    max-width: 1000px;
+    border-radius: 5px;
     background: whitesmoke;
+    // border: 2px solid red;
 
     .order-page-top {
       border-bottom: 1px solid rgba(128, 128, 128, 0.132);
@@ -130,17 +131,16 @@ $txt-light-blue: #cfe8ff;
   }
 
   .each-order-con {
-   
     padding: 5px 3px;
     // padding-bottom: 50px;
     margin-top: 15px;
 
     @include responsive(bigphone) {
       // height: 70vh;
+
       padding: 5px 3px;
     }
     .each-order {
-      // border: 2px solid red;
       cursor: pointer;
       border-radius: 10px;
       background: white;

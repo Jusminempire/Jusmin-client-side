@@ -72,6 +72,8 @@ function CartItems({ triger, setTriger }) {
   function goBack() {
     router.back();
   }
+
+  console.log(productsArray);
   return (
     <>
       {payModal && (

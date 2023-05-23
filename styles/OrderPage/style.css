@@ -34,7 +34,8 @@
   border: 1px solid rgba(128, 128, 128, 0.132);
   margin: 0 auto;
   margin-top: 10px;
-  max-width: 1200px;
+  max-width: 1000px;
+  border-radius: 5px;
   background: whitesmoke;
 }
 .order-page-main-con .oders-con .order-page-top {

@@ -72,6 +72,7 @@ function PayForm({
           quantity: p.quantity,
         };
         cartFinalProducts.push(newProduct);
+        // console.log(cartFinalProducts);
         // add the total cost to the totalAmount variable
       }
     }
@@ -101,6 +102,19 @@ function PayForm({
       };
       setProductData(dynamicItemDetails);
     } else {
+      for (const p of productsArray) {
+        // calculate the total cost
+        const newProduct = {
+          productname: p.productname,
+          productspec: p.productnumber,
+          productprice: p.productprice / p.quantity,
+          quantity: p.quantity,
+        };
+        cartFinalProducts.push(newProduct);
+        // console.log(cartFinalProducts);
+        // add the total cost to the totalAmount variable
+      }
+
       const cartItemDetails = {
         deliveryfee: parseInt(data.state.split(",")[1]),
         homedelivery: parseInt(data.homedelivery),
@@ -111,6 +125,7 @@ function PayForm({
         product: cartFinalProducts,
       };
       setProductData(cartItemDetails);
+      // console.log(cartItemDetails);
     }
 
     // localStorage.setItem("localCartItem", JSON.stringify(localCart));
@@ -139,7 +154,7 @@ function PayForm({
           localStorage.setItem("userId", resp.data.data.userId);
           if (resp.data.status === "PENDING") {
             logIN(logInGuestUser);
-            console.log("logined");
+            console.log("logine");
           }
         })
         .catch((error) => {
@@ -157,9 +172,9 @@ function PayForm({
     priceNumber;
 
   // CHECKOUT
-  const [transactionDetails, setTransactionDetails] = useState();
   const router = useRouter();
   const [btnStatus, setBtnStatus] = useState(true);
+
   const checkOutpayment = () => {
     const token = Cookies.get("JWTtoken");
     axios
@@ -174,14 +189,12 @@ function PayForm({
       )
       .then((res) => {
         const transactionID = {
-          transactID: res.data.data.paymentIntent.id,
-          transactionID: res.data.data.Transaction._id,
+          transactID: res?.data?.data?.paymentIntent?.id,
+          transactionID: res?.data?.data?.Transaction?._id,
         };
-        localStorage.setItem("transactID", JSON.stringify(transactionID));
 
-        if (res.data.data.url) {
-          router.push(`${res.data.data.url}`);
-        }
+        localStorage.setItem("transactID", JSON.stringify(transactionID));
+        router.push(`${res.data.data.url}`);
       })
       .catch((err) => {
         console.log(err);
@@ -194,7 +207,7 @@ function PayForm({
     setBtnStatus(false);
     router.push("/");
   };
-  // console.log(product?.productcategory);
+  // console.log(productData);
   return (
     <div className="modal-main-con">
       <div className="modal-relative">

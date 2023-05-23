@@ -267,7 +267,7 @@ export const singleTransactionFetcher = (transactID) =>
   singleTransaction(transactID);
 
 // UPDATE TRANACTION STATUS
-const updateTransaction = async (transactionStatus, userID) => {
+const updateTransaction = async (transactionStatus, transactID, userID) => {
   const token = Cookies.get("JWTtoken");
   await axios
     .patch(
@@ -275,6 +275,7 @@ const updateTransaction = async (transactionStatus, userID) => {
         `${userID}`,
       {
         transactionstatus: transactionStatus,
+        orderRef: transactID,
       },
       {
         headers: {
@@ -299,17 +300,17 @@ export const transactionStatus = async (
 ) => {
   try {
     const response = await axios.post(
-      "https://jusmin.onrender.com/api/v1/transaction/getTransactionStatusInfo",
+      "https://jusmin.onrender.com/api/v1/transaction/gettransactionstatus",
       {
-        transactID: transactID,
+        paymentIntentI: transactID,
       }
     );
-    // console.log(response.data.status, userID);
+    // console.log(response.data.data.status);
 
-    const transactionStatus = response.data.status;
+    const transactionStatus = response.data.data.status;
     // console.log(transactionStatus);
     // console.log(response);
-    updateTransaction(transactionStatus, userID);
+    updateTransaction(transactionStatus, transactID, userID);
     // setGetTransactionDetails(response.data);
     return response.data.status;
   } catch (error) {

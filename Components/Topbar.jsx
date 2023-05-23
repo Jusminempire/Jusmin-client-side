@@ -11,13 +11,14 @@ import { FiGrid, FiTruck } from "react-icons/fi";
 import { GrUserAdmin } from "react-icons/gr";
 import { getSessionUser } from "../Services/functions";
 import { CartQuantityContext } from "../pages/_app";
+import { AiOutlineMail, AiTwotoneMail } from "react-icons/ai";
 
 function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
   // SET NAV LIST COLOR WITH PAGE PATH NAME
   const cartQty = useContext(CartQuantityContext).cartQty;
   const [active, setActive] = useState(0);
   const router = useRouter();
-
+  const adminEmail = "jusminempire@gmail.com";
   useEffect(() => {
     switch (router.asPath) {
       case "/":
@@ -142,13 +143,10 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
                 <p> Order</p>
               </li>
             </Link>
-            <a
-              href="https://wa.me/+2348036027773?text=Hello, I am a customer on your platform ELEGANT COLLCTIONS and i need your support."
-              target="_blank"
-            >
+            <a href={`mailto:${adminEmail}`} target="_blank">
               <li>
                 <span>
-                  <BsWhatsapp className="menu-icon" />
+                  <AiOutlineMail className="menu-icon" />
                 </span>
                 Support
               </li>
