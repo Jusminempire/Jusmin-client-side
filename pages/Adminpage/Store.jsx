@@ -68,7 +68,7 @@ function Store() {
       const userData = await getSessionUser();
       setUserPosituon(userData?.user?.position);
 
-      if (userPosition === "client") {
+      if (userPosition === "client" || userPosition === "guest") {
         router.push("/");
       }
     };

@@ -40,16 +40,13 @@ function AdminDashboard() {
       const userData = await getSessionUser();
       setUserPosituon(userData?.user?.position);
 
-      if (userPosition === "client") {
+      if (userPosition === "client" || userPosition === "guest") {
         router.push("/");
       }
     };
     userInfo();
   }, [userPosition, router]);
 
-
-
-  
   return (
     <div>
       {userPosition === "admin" || userPosition === "staff" ? (

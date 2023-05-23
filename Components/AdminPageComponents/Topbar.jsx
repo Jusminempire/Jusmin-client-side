@@ -36,13 +36,13 @@ function Topbar() {
           />
           <h1></h1>
         </span>
-        <div style={{ textAlign: "center", color: "#3d91e6" }}>
+        <div style={{ textAlign: "center", color: "#ff69b4" }}>
           {/* <p>{name}</p> */}
           <p style={{ textTransform: "uppercase" }}>{userPosition}</p>
         </div>
         <div className="dark-mode-con">
           <a
-            href="https://dashboard.paystack.com/#/dashboard?period=30"
+            href="https://dashboard.stripe.com/test/payments?status[0]=successful"
             target="_blank"
           >
             {" "}
