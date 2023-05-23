@@ -138,7 +138,7 @@ function TransactionReceipt({
               style={{
                 color: (() => {
                   switch (transactionstatus.toLowerCase()) {
-                    case "success":
+                    case "succeeded":
                       return "#2c7a2c";
                     default:
                       return "#db504a";
@@ -147,20 +147,17 @@ function TransactionReceipt({
                 fontWeight: "normal",
               }}
             >
-              {transactionstatus.toLowerCase()}
-              {/* {transactionstatus.toLowerCase() === "success" ? (
+              {/* {transactionstatus.toLowerCase()} */}
+              {transactionstatus.toLowerCase() === "succeeded" ? (
                 <>
                   {transactionstatus.toLowerCase()}
                   <BsCheck2All />
                 </>
               ) : (
                 <>
-                  {transactionstatus.toLowerCase() ===
-                    "requires_payment_method" && "Incomplete"}{" "}
-                  <br />
-                  <sub>({transactionstatus.toLowerCase()})</sub> <IoIosClose />
+                  {transactionstatus.toLowerCase()} <IoIosClose />
                 </>
-              )} */}
+              )}
             </span>
           </p>
         </div>

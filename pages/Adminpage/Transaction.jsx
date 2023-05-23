@@ -94,8 +94,8 @@ function Transaction() {
   let successTotalAmountSum = 0;
   useEffect(() => {
     const sumByStatus = () => {
-      for (let i = 0; i < getTransactions?.success?.length; i++) {
-        successTotalAmountSum += getTransactions?.success[i].totalAmount;
+      for (let i = 0; i < getTransactions?.succeeded?.length; i++) {
+        successTotalAmountSum += getTransactions?.succeeded[i].totalAmount;
       }
     };
     sumByStatus();
@@ -274,7 +274,7 @@ function Transaction() {
                   <li>
                     <MdOutlineSecurityUpdateGood className="bx bxs-group" />
                     <span className="text">
-                      <h3>{getTransactions?.success?.length}</h3>
+                      <h3>{getTransactions?.succeeded?.length}</h3>
                       <p>Successful</p>
                       <h3>₦ {getSuccessfulTotal?.toLocaleString()}</h3>
                     </span>
@@ -353,7 +353,7 @@ function Transaction() {
                 <input
                   type="text"
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search by Order Ref ..."
+                  placeholder="Search by Order ID ..."
                 />
               </form>
               <div className="order" style={{ position: "relative" }}>
@@ -376,12 +376,10 @@ function Transaction() {
                   </thead>
                   {pageOfCountries
                     ?.filter((item) => {
-                      if (item?.paystackRef === " ") {
+                      if (item?._id === " ") {
                         return item;
                       } else if (
-                        item?.paystackRef
-                          .toLowerCase()
-                          .includes(search?.toLowerCase())
+                        item?._id.toLowerCase().includes(search?.toLowerCase())
                       ) {
                         return item;
                       }
@@ -448,12 +446,8 @@ function StoreTransaction({
             style={{
               backgroundColor: (() => {
                 switch (transactionstatus) {
-                  case "abandoned":
-                    return "#db504a";
-                  case "Pending":
-                    return "#ffce26";
-                  case "success":
-                    return "#008000c4";
+                  case "succeeded":
+                    return "#389738";
                   default:
                     return "#db504a";
                 }
@@ -478,9 +472,7 @@ function StoreTransaction({
                   case "Transit":
                     return "#ffce26";
                   case "Delivered":
-                    return "#008000c4";
-                  case "Cancelled":
-                    return "#db504a";
+                    return "#389738";
                   default:
                     return "#3d91e6";
                 }

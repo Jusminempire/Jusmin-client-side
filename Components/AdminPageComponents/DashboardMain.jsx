@@ -189,12 +189,8 @@ function RecentTransactions({
               style={{
                 backgroundColor: (() => {
                   switch (transactionstatus) {
-                    case "abandoned":
-                      return "#db504a";
-                    case "Pending":
-                      return "#ffce26";
-                    case "success":
-                      return "#008000a5";
+                    case "succeeded":
+                      return "#389738";
                     default:
                       return "#db504a";
                   }
@@ -218,7 +214,6 @@ function RecentTransactions({
         >
           <Link
             href={`/Adminpage/transaction/${_id}`}
-            style={{}}
             className="table-detais-link"
           >
             ₦ {totalAmount.toLocaleString()}
@@ -258,7 +253,7 @@ function RecentTransactions({
                     case "Transit":
                       return "#ffce26";
                     case "Delivered":
-                      return "#008000a5";
+                      return "#389738";
                     default:
                       return "#3d91e6";
                   }

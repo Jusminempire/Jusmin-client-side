@@ -336,17 +336,20 @@ export const allTransactions = async () => {
 
     const failed = transactions.filter(
       (orders) =>
-        orders.transactionstatus.toLowerCase() === "ongoing" ||
-        orders.transactionstatus.toLowerCase() === "failed"
+        orders.transactionstatus.toLowerCase() === "processing" ||
+        orders.transactionstatus.toLowerCase() === "requires_action" ||
+        orders.transactionstatus.toLowerCase() === "canceled" ||
+        orders.transactionstatus.toLowerCase() === "requires_action"
     );
     const abandoned = transactions.filter(
-      (orders) => orders.transactionstatus.toLowerCase() === "abandoned"
+      (orders) =>
+        orders.transactionstatus.toLowerCase() === "requires_payment_method"
     );
     const pending = transactions.filter(
       (orders) => orders.transactionstatus.toLowerCase() == "pending"
     );
-    const success = transactions.filter(
-      (orders) => orders.transactionstatus.toLowerCase() === "success"
+    const succeeded = transactions.filter(
+      (orders) => orders.transactionstatus.toLowerCase() === "succeeded"
     );
     // console.log(transactions);
     return {
@@ -354,7 +357,7 @@ export const allTransactions = async () => {
       failed,
       abandoned,
       pending,
-      success,
+      succeeded,
     };
   } catch (error) {
     console.log(error);

@@ -78,6 +78,7 @@ function PayForm({
     }
   }, []);
 
+  const [paymentBtn, setPaymentBtn] = useState(true);
   const onSubmitBanner = async (data, e) => {
     e.preventDefault();
     setConfirmDetails(data);
@@ -142,6 +143,7 @@ function PayForm({
       localStorage.setItem("userLoginDetails", JSON.stringify(guestUser));
 
       // register the guest
+      setPaymentBtn(false);
       axios
         .post(
           "https://jusmin.onrender.com/api/v1/userverification/registeruser",
@@ -155,10 +157,12 @@ function PayForm({
           if (resp.data.status === "PENDING") {
             logIN(logInGuestUser);
             console.log("logine");
+            setPaymentBtn(true);
           }
         })
         .catch((error) => {
           console.log(error.response.data.error);
+          setPaymentBtn(false);
         });
     }
 
@@ -192,7 +196,7 @@ function PayForm({
           transactID: res?.data?.data?.paymentIntent?.id,
           transactionID: res?.data?.data?.Transaction?._id,
         };
-
+        console.log(res.data.data.url);
         localStorage.setItem("transactID", JSON.stringify(transactionID));
         router.push(`${res.data.data.url}`);
       })
@@ -340,30 +344,37 @@ function PayForm({
                 </>
               )}
               {btnStatus ? (
-                <div className="checkout-btn" onClick={() => checkOutpayment()}>
-                  <button>
-                    CHECK OUT ( ₦{" "}
-                    {product ? (
-                      `${total.toLocaleString()}`
-                    ) : (
-                      <>
-                        {" "}
-                        {(
-                          parseInt(totalAmount) +
-                          parseInt(confirmDetails?.state?.split(",")[1]) +
-                          parseInt(confirmDetails.homedelivery)
-                        ).toLocaleString()}
-                      </>
-                    )}{" "}
-                    )
-                  </button>
-                </div>
+                <>
+                  {paymentBtn && (
+                    <div
+                      className="checkout-btn"
+                      onClick={() => checkOutpayment()}
+                    >
+                      <button>
+                        CHECK OUT ( ₦{" "}
+                        {product ? (
+                          `${total.toLocaleString()}`
+                        ) : (
+                          <>
+                            {" "}
+                            {(
+                              parseInt(totalAmount) +
+                              parseInt(confirmDetails?.state?.split(",")[1]) +
+                              parseInt(confirmDetails.homedelivery)
+                            ).toLocaleString()}
+                          </>
+                        )}{" "}
+                        )
+                      </button>
+                    </div>
+                  )}
+                </>
               ) : (
                 <div
                   className="checkout-btn"
                   onClick={() => cancelTransaction()}
                 >
-                  <button>Loadind ...</button>
+                  <button>Loading ...</button>
                 </div>
               )}
             </div>
@@ -440,14 +451,6 @@ function PayForm({
                 </div>
               </>
             )}{" "}
-            {/* <input
-              type="submit"
-              className="submit-btn"
-              //   value={loadingBanner ? "Uploading..." : "Upload Banner"}
-            /> */}
-            {/* </form> */}
-            {/* PAYMENT FORM*/}
-            {/* <form onSubmit={handleSubmit(onSubmitBanner)}> */}
             {/* ADDRESS */}
             <div>
               <input
@@ -574,6 +577,7 @@ function PayForm({
             <input
               type="submit"
               className="submit-btn"
+
               //   value={loadingBanner ? "Uploading..." : "Upload Banner"}
             />
             <img

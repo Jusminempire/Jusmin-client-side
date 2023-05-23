@@ -171,7 +171,7 @@ body {
 .active-category {
   border: 1px solid var(--blue);
   color: white;
-  background: #3c91e6;
+  background: var(--blue);
   cursor: pointer;
 }
 
@@ -896,12 +896,12 @@ $light-orange: #ffe0d3;
 }
 
 .edit-product-btn {
-  border: 1px solid $txt-blue;
+  border: 1px solid var(--blue);
   font-size: 12px;
   text-align: center;
   width: 70px;
   padding: 3px 5px;
-  color: $txt-blue;
+  color: var(--blue);
   cursor: pointer;
   margin: 5px;
 

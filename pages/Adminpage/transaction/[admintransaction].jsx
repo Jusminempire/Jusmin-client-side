@@ -88,7 +88,7 @@ function admintransaction() {
     setBtnLoading(false);
     await axios
       .patch(
-        "https://elegantstorescollection.onrender.com/api/v1/transaction/updatetransaction/" +
+        "https://jusmin.onrender.com/api/v1/transaction/updatetransaction/" +
           `${transactID}`,
         {
           status: data.orderstatus,
@@ -125,7 +125,7 @@ function admintransaction() {
             </button>
             <h3>Transaction Receipt</h3>
             <p className="paystackRef">
-              Order Ref: <span>{userData?.paystackRef}</span>
+              Order ID: <span>{userData?._id}</span>
             </p>
           </div>
           <div className="receipt-con main-detail-con">
@@ -229,14 +229,10 @@ function admintransaction() {
                     style={{
                       color: (() => {
                         switch (userData?.transactionstatus) {
-                          case "Pending":
-                            return "#db504a";
-                          case "abandoned":
-                            return "#ffce26";
-                          case "success":
-                            return "#3d91e6";
+                          case "succeeded":
+                            return "#389738";
                           default:
-                            return "#3d91e6";
+                            return "#db504a";
                         }
                       })(),
                     }}
@@ -255,7 +251,7 @@ function admintransaction() {
                           case "Transit":
                             return "#ffce26";
                           case "Delivered":
-                            return "#3d91e6";
+                            return "#389738";
                           default:
                             return "#3d91e6";
                         }
@@ -286,7 +282,7 @@ function admintransaction() {
                 </div>
                 <div className="qr-code">
                   <QRCode
-                    value={`https://elegantstores-client-side.vercel.app/Adminpage/transaction/${
+                    value={`https://jusmin.vercel.app/Adminpage/transaction/${
                       transactID && transactID
                     }`}
                   />
@@ -311,7 +307,7 @@ function admintransaction() {
                       userData?.user[0]?.userphonenumber
                     }?text=Hello, I am a ${
                       session?.user.username
-                    } from ELEGANT COLLECTION , I am chatting as regards your Order with Ref No. ${
+                    } from Jusmin, I am chatting as regards your Order with Ref No. ${
                       userData?.paystackRef
                     } made on ${userData?.timestamp
                       .substring(0, 20)

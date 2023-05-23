@@ -51,16 +51,21 @@ function CustomerID() {
     async function fetchSessionUser() {
       if (userData) {
         const success = userData?.transaction.filter(
-          (order) => order.transactionstatus.toLowerCase() === "success"
+          (orders) => orders.transactionstatus.toLowerCase() === "succeeded"
         );
         const pending = userData?.transaction.filter(
-          (order) => order.transactionstatus.toLowerCase() === "pending"
+          (order) => order.transactionstatus.toLowerCase() == "pending"
         );
         const abandoned = userData?.transaction.filter(
-          (order) => order.transactionstatus.toLowerCase() === "abandoned"
+          (order) =>
+            order.transactionstatus.toLowerCase() === "requires_payment_method"
         );
         const failed = userData?.transaction.filter(
-          (order) => order.transactionstatus.toLowerCase() === "failed"
+          (orders) =>
+            orders.transactionstatus.toLowerCase() === "processing" ||
+            orders.transactionstatus.toLowerCase() === "requires_action" ||
+            orders.transactionstatus.toLowerCase() === "canceled" ||
+            orders.transactionstatus.toLowerCase() === "requires_action"
         );
 
         setSuccessStatus(success);
@@ -130,7 +135,7 @@ function CustomerID() {
     const token = Cookies.get("JWTtoken");
     await axios
       .patch(
-        "https://elegantstorescollection.onrender.com/api/v1/userverification/updateuser/" +
+        "https://jusmin.onrender.com/api/v1/userverification/updateuser/" +
           `${userID}`,
         {
           position: e.target.value,
@@ -154,7 +159,7 @@ function CustomerID() {
     const token = Cookies.get("JWTtoken");
     await axios
       .patch(
-        "https://elegantstorescollection.onrender.com/api/v1/userverification/updateuser/" +
+        "https://jusmin.onrender.com/api/v1/userverification/updateuser/" +
           `${userID}`,
         {
           block: true,
@@ -180,7 +185,7 @@ function CustomerID() {
     const token = Cookies.get("JWTtoken");
     await axios
       .patch(
-        "https://elegantstorescollection.onrender.com/api/v1/userverification/updateuser/" +
+        "https://jusmin.onrender.com/api/v1/userverification/updateuser/" +
           `${userID}`,
         {
           block: false,

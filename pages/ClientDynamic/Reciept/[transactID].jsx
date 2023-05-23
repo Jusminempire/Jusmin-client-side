@@ -73,7 +73,7 @@ function transactionrecipt() {
           </button>
           <h3>Transaction Receipt</h3>
           <p className="paystackRef">
-            Order Ref: <span>{userData?.orderRef}</span>
+            Order ID: <span>{userData?._id}</span>
           </p>
           <p>
             {userData?.transactionstatus === "Pending"
@@ -124,7 +124,7 @@ function transactionrecipt() {
                 style={{
                   color: (() => {
                     switch (userData?.transactionstatus.toLowerCase()) {
-                      case "success":
+                      case "succeeded":
                         return "#2c7a2c";
                       default:
                         return "#db504a";

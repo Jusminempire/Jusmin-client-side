@@ -29,6 +29,9 @@ function CustomersData() {
   const [getAdmin, setGetAdmin] = useState([]);
   const [getStaff, setGetStaff] = useState([]);
   const [getClient, setGetClient] = useState([]);
+  const [getGuest, setGetGuest] = useState([]);
+  // const [ordinaryUsers, setOrdinaryUsers] = useState([]);
+
   useEffect(() => {
     const ftchAllTransactions = async () => {
       // const transactions = await allTransactions();
@@ -39,12 +42,14 @@ function CustomersData() {
         setGetAdmin(users?.users.filter((user) => user.position === "admin"));
         setGetStaff(users?.users.filter((user) => user.position === "staff"));
         setGetClient(users?.users.filter((user) => user.position === "client"));
+        setGetGuest(users?.users.filter((user) => user.position === "guest"));
       }
     };
 
     ftchAllTransactions();
+    // setOrdinaryUsers([getClient, getGuest]);
   }, [router]);
-
+  // console.log([...getClient, ...getGuest]);
   // save pae as image
   const saveAsImage = (element) => {
     html2canvas(element).then((canvas) => {
@@ -63,7 +68,7 @@ function CustomersData() {
       const userData = await getSessionUser();
       setUserPosituon(userData?.user.position);
 
-      if (userPosition === "client") {
+      if (userPosition === "client" || userPosition === "guest") {
         router.push("/");
       }
     };
@@ -75,9 +80,11 @@ function CustomersData() {
 
   // ...................................
   // const [countries, setCountries] = useState([]);
+  const ordinaryUsers = [...getClient, ...getGuest];
+
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(8);
-  const pageOfCountries = paginate(getClient, currentPage, pageSize);
+  const pageOfCountries = paginate(ordinaryUsers, currentPage, pageSize);
 
   const handlePageChange = (pageNumber, totalPages) => {
     if (pageNumber !== "prev" && pageNumber !== "next")
@@ -175,6 +182,13 @@ function CustomersData() {
                       </span>
                     </li>
                     <li>
+                      <FaUsers className="bx bxs-group" />
+                      <span className="text">
+                        <h3>{getGuest?.length}</h3>
+                        <p>Guests</p>
+                      </span>
+                    </li>
+                    <li>
                       <GrUserWorker className="bx bxs-calendar-check" />
                       <span className="text">
                         <h3>{getStaff?.length}</h3>
@@ -241,10 +255,19 @@ function CustomersData() {
                   </>
                 )}
               </div>
+              {/* <div className="user-main-con">
+                {getGuest.length > 0 && (
+                  <>
+                    {getGuest?.map((staff) => (
+                      <GetAdmin key={staff._id} {...staff} />
+                    ))}
+                  </>
+                )}
+              </div> */}
               <div className="table-data">
                 <div
                   style={{
-                    display:"flex",
+                    display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     height: "60px",
@@ -266,7 +289,7 @@ function CustomersData() {
                 </div>
               </div>
               <div className="user-main-con">
-                {getClient.length > 0 && (
+                {ordinaryUsers.length > 0 && (
                   <>
                     {pageOfCountries
                       ?.filter((item) => {
@@ -287,7 +310,7 @@ function CustomersData() {
                 )}
               </div>
               <Pagination
-                itemsCount={getClient.length}
+                itemsCount={ordinaryUsers.length}
                 pageSize={pageSize}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
