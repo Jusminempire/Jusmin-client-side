@@ -154,6 +154,7 @@ function CartProducts({
         ...currentState[index],
         quantity: newCount,
         productprice: newPriceNumber,
+        productspec: productnumber,
       };
       currentState.splice(index, 1, newProduct);
       setProductsArray([...currentState]);
@@ -193,8 +194,8 @@ function CartProducts({
     const finalCart = [...existingItemsInLocal];
 
     const newLocalCart = finalCart.filter((item) => item._id !== _id);
-    console.log(newLocalCart);
-    console.log(existingItemsInLocal);
+    // console.log(newLocalCart);
+    // console.log(existingItemsInLocal);
     localStorage.setItem("localCartItem", JSON.stringify(newLocalCart));
     // window.location.reload();
     await setTriger(!triger);
