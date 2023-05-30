@@ -93,9 +93,9 @@ function transactionrecipt() {
               <div key={item._id} className="product-details">
                 <span className="p-name">{item?.productname}</span>
                 <span className="p-name">{item?.productspec}</span>
-                <span>₦ {item?.productprice.toLocaleString()}</span>
+                <span>$ {item?.productprice.toLocaleString()}</span>
                 <span className="qty"> {item?.quantity}</span>
-                <span>₦ {item?.total.toLocaleString()}</span>
+                <span>$ {item?.total.toLocaleString()}</span>
               </div>
             ))}
             <div
@@ -107,7 +107,7 @@ function transactionrecipt() {
               }}
             >
               <span>Delivery fee:</span>
-              <span>₦ {userData?.deliveryfee}</span>
+              <span>$ {userData?.deliveryfee}</span>
             </div>
             <div className="transaction-status" style={{ width: "95%" }}>
               <span>Home delivery:</span>
@@ -170,7 +170,7 @@ function transactionrecipt() {
               <span>{userData?.adminnote}</span>
             </div>
             <div className="total-amount">
-              <h1>₦ {userData?.totalAmount.toLocaleString()}</h1>
+              <h1>$ {userData?.totalAmount.toLocaleString()}</h1>
             </div>
             <div className="qr-code">
               <QRCode

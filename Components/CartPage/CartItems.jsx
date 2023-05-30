@@ -49,6 +49,7 @@ function CartItems({ triger, setTriger }) {
         productname: item.productname,
         productprice: item.productprice,
         quantity: item.quantity,
+        productspec: item.productnumber,
       };
     });
 
@@ -73,7 +74,7 @@ function CartItems({ triger, setTriger }) {
     router.back();
   }
 
-  console.log(productsArray);
+  // console.log(productsArray);
   return (
     <>
       {payModal && (
@@ -113,7 +114,7 @@ function CartItems({ triger, setTriger }) {
           />
         ))}
         <div className="checkout" onClick={() => PayNow()}>
-          <button>CHECKOUT (₦ {totalAmount.toLocaleString()})</button>
+          <button>CHECKOUT ($ {totalAmount.toLocaleString()})</button>
         </div>
       </div>
     </>
@@ -162,6 +163,7 @@ function CartProducts({
         productname,
         productprice: priceNumber,
         quantity: count,
+        productnumber,
       };
       setProductsArray([...currentState, newProduct]);
       setTotalAmount(totalAmount + priceNumber);
@@ -212,7 +214,7 @@ function CartProducts({
         <div className="cart-product-lower">
           <div className="cart-product-lower-top">
             <h4>{productname}</h4>
-            <p>₦ {priceNumber.toLocaleString()} </p>
+            <p>$ {priceNumber.toLocaleString()} </p>
             <span>{productnumber}</span>
           </div>
           <div className="cart-product-lower-lower">
