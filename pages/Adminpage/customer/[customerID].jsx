@@ -312,7 +312,7 @@ function CustomerID() {
                   ))}
                 </div>
                 <h3>
-                  Pending transaction<span>({pendingStatus?.length}):</span> ₦{" "}
+                  Pending transaction<span>({pendingStatus?.length}):</span> ${" "}
                   {pendingSum?.toLocaleString()}
                 </h3>
                 <div className="transaction-main-con">
@@ -322,7 +322,7 @@ function CustomerID() {
                 </div>
                 <h3>
                   Abandoned transaction<span>({abandonedStatus?.length}):</span>
-                  ₦ {abandonedSum?.toLocaleString()}
+                  $ {abandonedSum?.toLocaleString()}
                 </h3>
                 <div className="transaction-main-con">
                   {abandonedStatus?.map((order) => (

@@ -42,6 +42,7 @@ function Footer() {
     Cookies.remove("JWTtoken");
     location.reload();
     router.push("/");
+    localStorage.removeItem("userLoginDetails");
   };
   return (
     <section className="footer">

@@ -93,7 +93,7 @@ function CartItems({ triger, setTriger }) {
       <p className="cart-heading">CART SUMMARY</p>
       <div className="subtotal">
         <p>Subtotal</p>
-        <h3> ₦ {totalAmount.toLocaleString()}</h3>
+        <h3> $ {totalAmount.toLocaleString()}</h3>
         <div className="checkout" onClick={() => PayNow()}>
           <button>CHECKOUT (₦ {totalAmount.toLocaleString()})</button>
         </div>

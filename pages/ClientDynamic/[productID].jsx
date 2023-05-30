@@ -387,7 +387,7 @@ function Details() {
           <div className="lower-details">
             <h1 className="p-name">{product?.productname}</h1>
             <p className="p-number">
-              <span>Price :</span> ₦{" "}
+              <span>Price :</span> ${" "}
               {Number(product?.productprice).toLocaleString()}
             </p>
             <p className="p-number">
@@ -451,7 +451,7 @@ function Details() {
                   <FiPlusCircle />
                 </span>
               </div>
-              <h1>₦ {priceNumber.toLocaleString()}</h1>
+              <h1>$ {priceNumber.toLocaleString()}</h1>
             </div>
             <div className="add-to-cart-con">
               <div className="add" onClick={() => addToCar()}>
@@ -465,14 +465,6 @@ function Details() {
               </Link>
             </div>
           </div>
-          {/* <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/JOe0vsU_vzw"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-          ></iframe> */}
         </div>
 
         <div className="single-product-details">
@@ -666,11 +658,11 @@ function SimilarProducts({
       <p className="product-name">{productname}</p>
       <div className="price">
         <p className="product-price">
-          ₦ {Number(productprice).toLocaleString()}
+          $ {Number(productprice).toLocaleString()}
         </p>
         <p className="product-oldprice">
           {" "}
-          {productoldprice && "₦ " + Number(productoldprice).toLocaleString()}
+          {productoldprice && "$ " + Number(productoldprice).toLocaleString()}
         </p>
       </div>
     </div>

@@ -112,7 +112,7 @@ function transactionrecipt() {
             <div className="transaction-status" style={{ width: "95%" }}>
               <span>Home delivery:</span>
               <span>
-                ₦ {userData?.homedelivery ? userData.homedelivery : "No"}
+                $ {userData?.homedelivery ? userData.homedelivery : "No"}
               </span>
             </div>
             <div

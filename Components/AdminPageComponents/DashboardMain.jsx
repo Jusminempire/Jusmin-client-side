@@ -216,7 +216,7 @@ function RecentTransactions({
             href={`/Adminpage/transaction/${_id}`}
             className="table-detais-link"
           >
-            ₦ {totalAmount.toLocaleString()}
+            $ {totalAmount.toLocaleString()}
           </Link>
         </td>
         <td

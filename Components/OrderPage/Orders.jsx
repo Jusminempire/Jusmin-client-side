@@ -130,7 +130,7 @@ function TransactionReceipt({
           </p>
           <p className="productnames" style={{ color: "black" }}>
             {" "}
-            ₦ {totalAmount.toLocaleString()}
+            $ {totalAmount.toLocaleString()}
           </p>
           <p style={{ color: "gray", fontWeight: "bold" }}>
             Payment:{" "}

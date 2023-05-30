@@ -239,7 +239,7 @@ function PayForm({
                   <p>
                     Product Price:{" "}
                     <span>
-                      ₦ {Number(product?.productprice).toLocaleString()}
+                      $ {Number(product?.productprice).toLocaleString()}
                     </span>{" "}
                   </p>
                   <p>
@@ -249,7 +249,7 @@ function PayForm({
                     Delivery fee:
                     <span>
                       {" "}
-                      ₦
+                      $
                       {(
                         parseInt(confirmDetails?.state?.split(",")[1]) +
                         parseInt(confirmDetails.homedelivery)
@@ -262,7 +262,7 @@ function PayForm({
                     </span>
                   </p>
                   <p className="total">
-                    Total: <span> ₦ {total.toLocaleString()}</span>
+                    Total: <span> $ {total.toLocaleString()}</span>
                   </p>
                   <p>
                     Delivery address:{" "}
@@ -290,7 +290,7 @@ function PayForm({
                       <p>
                         Product Price:{" "}
                         <span>
-                          ₦{" "}
+                          ${" "}
                           {Number(
                             item?.productprice / item.quantity
                           ).toLocaleString()}
@@ -303,7 +303,7 @@ function PayForm({
                       <p className="total">
                         Total:{" "}
                         <span>
-                          ₦{" "}
+                         ${" "}
                           {Number(item?.productprice / item.quantity) *
                             item.quantity}
                         </span>
@@ -314,7 +314,7 @@ function PayForm({
                     Delivery fee:
                     <span>
                       {" "}
-                      ₦
+                      $
                       {(
                         parseInt(confirmDetails?.state?.split(",")[1]) +
                         parseInt(confirmDetails.homedelivery)
@@ -351,7 +351,7 @@ function PayForm({
                       onClick={() => checkOutpayment()}
                     >
                       <button>
-                        CHECK OUT ( ₦{" "}
+                        CHECK OUT (${" "}
                         {product ? (
                           `${total.toLocaleString()}`
                         ) : (
