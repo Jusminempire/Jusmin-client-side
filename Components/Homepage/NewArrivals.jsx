@@ -13,7 +13,8 @@ import {
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import Image from "next/image";
 
-function NewArrivals() {
+function NewArrivals({ products }) {
+
   const [trendingProducts, setTrendingProducts] = useState([]);
   useEffect(() => {
     return onSnapshot(
@@ -30,7 +31,7 @@ function NewArrivals() {
     <div className="new-arrivals-main-con">
       <div className="new-arrivals-con">
         {/* heading */}
-        <h1>TRENDING</h1>
+        <h1> CATEGORIES</h1>
         {/* product container */}
 
         <div className="new-products-con">

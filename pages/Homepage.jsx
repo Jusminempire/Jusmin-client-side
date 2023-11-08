@@ -159,7 +159,7 @@ const Homepage = () => {
           <div className="category-con">{/* <h1>CATEGORIES</h1> */}</div>
           <Advert />
           {/* NEW ARRIVALS */}
-          <NewArrivals />
+          {/* <NewArrivals products={products} /> */}
           {/* <Advert /> */}
           {/* MAIN PRODUCT */}
           <Products products={products} addToCar={addToCar} />

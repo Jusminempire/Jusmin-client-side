@@ -10,8 +10,6 @@ import { FC, useEffect, useState } from "react";
 // }
 const Products = ({ displayedProducts }) => {
   // filter products by category
-  // console.log(displayedProducts);
-  console.log("hjgjhgh");
   const dynamicBtn = [
     "All",
     ...new Set(
@@ -37,7 +35,7 @@ const Products = ({ displayedProducts }) => {
       );
     }
   }, [category, displayedProducts]);
-  console.log(products);
+  // console.log(products);
   // search by input value
   const [search, setSearch] = useState("");
 
