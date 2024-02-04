@@ -12,7 +12,7 @@ The platform is built using the **MERN stack**, which includes ReactJS, NodeJS, 
 <h2>Live link 🌍📡 - [  https://study-notion-mern-stack.netlify.app/  ]</h2>
 <hr/>
 
-
+<!-- bjhkhjjk -->
 <img width='100%' src='https://github.com/Aniruddha-Gade/Study-Notion-EdTech__MERN-Stack/blob/main/screenshots/home1.png' />
 
 
