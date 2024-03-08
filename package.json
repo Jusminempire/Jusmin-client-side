@@ -47,6 +47,7 @@
     "react-router-dom": "^6.9.0",
     "react-slideshow-image": "^4.2.1",
     "react-youtube": "^10.1.0",
+    "react-fast-marquee": "^1.6.4",
     "scss": "^0.2.4",
     "swr": "^2.1.3"
   },

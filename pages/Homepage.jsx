@@ -157,23 +157,23 @@ const Homepage = () => {
           <Group position="center"></Group>
           <Banner />
           <div className="category-con">{/* <h1>CATEGORIES</h1> */}</div>
-          <Advert />
+          {/* <Advert /> */}
           {/* NEW ARRIVALS */}
           {/* <NewArrivals products={products} /> */}
           {/* <Advert /> */}
           {/* MAIN PRODUCT */}
-          <Products products={products} addToCar={addToCar} />
-          <Advert />
+          {/* <Products products={products} addToCar={addToCar} /> */}
+          {/* <Advert /> */}
           {/* SUBSCRIBE */}
           {/* <NewsLetter /> */}
           {/* PROMO */}
-          <Promo />
-          <Advantages />
+          {/* <Promo /> */}
+          {/* <Advantages /> */}
           {/* REVIEWS */}
-          <Review />
+          {/* <Review /> */}
           {/* <Advert /> */}
           {/* FOOTER */}
-          <Footer />
+          {/* <Footer /> */}
           {loginTriger && <Modal setLoginTriger={setLoginTriger} />}
         </>
       )}

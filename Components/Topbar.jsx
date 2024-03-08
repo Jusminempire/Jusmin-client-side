@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { logOUT } from "../Services/functions";
 import Cookies from "js-cookie";
+import SucessSlider from "../Components/SucessSlider";
 // ICONS
 import { SiCoinmarketcap } from "react-icons/si";
 import { FaCartArrowDown } from "react-icons/fa";
@@ -70,27 +71,19 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
     router.push("/");
   };
   return (
-    <div className="topbar-main-con">
-      {/* TOPBAR  */}
-      {/* logo side */}
-      {/* <div>
+    <section className="topbar-section">
+      <div className="topbar-top-con">
+        {/* TOPBAR  */}
+        {/* logo side */}
+        {/* <div>
           <p style={{ marginLeft: "5px", color: "#ff69b4" }}>
             {name && "Hello! " + name.split(" ")[0]}
           </p>
         </div> */}
-      {/* cart and user icon */}
-      {/* <div className="cart-icon-con">
-        <Link href="/cart">
-          <FaCartArrowDown className="icon" />
-        </Link>
-        {localCartSession ? (
-          <sup>{cartQty}</sup>
-        ) : (
-          <sup>{localCartLength?.length}</sup>
-        )}
-      </div> */}
-      {/* NAVBAR */}
-      {/* <div>
+        {/* cart and user icon */}
+
+        {/* NAVBAR */}
+        {/* <div>
         {session?.user?.position === "admin" ||
         session?.user?.position === "staff" ? (
           <Link href="/Adminpage/AdminDashboard">
@@ -109,39 +102,62 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
          null
         )}
       </div> */}
-      <div className="topbar-left-details">
-        <div>
-          <p>USD</p>
-        </div>
 
-        <div>
-          <Image
-            src={"/icons/call-calling.png"}
-            alt="call-icon"
-            height={20}
-            width={20}
-          />
-          <a href="Tel:+14044088024" target="_blank">
-            +1-404-408-8024
-          </a>
-        </div>
+        <div className="topbar-left-details">
+          <div>
+            <p>USD</p>
+          </div>
 
-        <div>
-          <Image
-            src={"/icons/envelop.png"}
-            alt="call-icon"
-            height={20}
-            width={20}
-          />
-          <a target="_blank" href={`mailto: Jusmineempire@gmail.com`}>
-            Jusmineempire@gmail.com
-          </a>
+          <div>
+            <Image
+              src={"/icons/call-calling.png"}
+              alt="call-icon"
+              height={20}
+              width={20}
+            />
+            <a href="Tel:+14044088024" target="_blank">
+              +1-404-408-8024
+            </a>
+          </div>
+
+          <div>
+            <Image
+              src={"/icons/envelop.png"}
+              alt="call-icon"
+              height={20}
+              width={20}
+            />
+            <a target="_blank" href={`mailto: Jusmineempire@gmail.com`}>
+              Jusmineempire@gmail.com
+            </a>
+          </div>
+        </div>
+        <div className="topbar-right-details">
+          <div>SignIn</div>
+          <div className="cartIcon-con">
+            <Link href="/cart">
+              <FaCartArrowDown className="" />
+            </Link>
+            {localCartSession ? (
+              <sup>{cartQty}</sup>
+            ) : (
+              <sup>{localCartLength?.length}</sup>
+            )}
+          </div>
         </div>
       </div>
-      <div className="topbar-right-details">
-        <p>SignIn</p>
+      <div
+        style={{
+          borderTop: ".5px solid gray",
+          width: "100%",
+          marginTop: "10px",
+        }}
+      ></div>
+      <div className="topbar-bottom-con">
+        <h1>JUSMIN EMPIRE</h1>
+        <SucessSlider />
       </div>
-    </div>
+    </section>
   );
 }
 export const jgi = () => {};
