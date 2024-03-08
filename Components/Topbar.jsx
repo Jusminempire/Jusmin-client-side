@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { logOUT } from "../Services/functions";
 import Cookies from "js-cookie";
@@ -61,7 +62,7 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
     }
     fetchSessionUser();
   }, [router, triga, dynamictriger, localCartTriger, cartQty]);
-  // console.log(session.user.position);
+
   // LOGOUT
   const logOUT = () => {
     Cookies.remove("JWTtoken");
@@ -71,105 +72,74 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
   return (
     <div className="topbar-main-con">
       {/* TOPBAR  */}
-
-      <div className="topbar-top-con">
-        {/* logo side */}
-        <div className="topbar-top-con-left">
-          <Link href="/">
-            {/* <SiCoinmarketcap className="icon" /> */}
-            <img
-              className="icon-img"
-              src="/WhatsApp_Image_2023-04-28_at_9.29.11_AM-removebg-preview-removebg-previe.png"
-              alt="img"
-            />
-          </Link>
+      {/* logo side */}
+      {/* <div>
           <p style={{ marginLeft: "5px", color: "#ff69b4" }}>
             {name && "Hello! " + name.split(" ")[0]}
           </p>
+        </div> */}
+      {/* cart and user icon */}
+      {/* <div className="cart-icon-con">
+        <Link href="/cart">
+          <FaCartArrowDown className="icon" />
+        </Link>
+        {localCartSession ? (
+          <sup>{cartQty}</sup>
+        ) : (
+          <sup>{localCartLength?.length}</sup>
+        )}
+      </div> */}
+      {/* NAVBAR */}
+      {/* <div>
+        {session?.user?.position === "admin" ||
+        session?.user?.position === "staff" ? (
+          <Link href="/Adminpage/AdminDashboard">
+            <li
+              className={`${active === 5 ? "listactive" : ""}`}
+              onClick={() => setActive(5)}
+            >
+              {active == 5 ? <div className="nav-active"></div> : ""}
+              <span>
+                <GrUserAdmin className="menu-icon" />
+              </span>
+              <p> Admin</p>
+            </li>
+          </Link>
+        ) : (
+         null
+        )}
+      </div> */}
+      <div className="topbar-left-details">
+        <div>
+          <p>USD</p>
         </div>
 
-        {/* cart and user icon */}
-        <div className="topbar-top-con-right">
-          <div className="cart-icon-con">
-            <Link href="/cart">
-              <FaCartArrowDown className="icon" />
-            </Link>
-            {localCartSession ? (
-              <sup>{cartQty}</sup>
-            ) : (
-              <sup>{localCartLength?.length}</sup>
-            )}
-          </div>
+        <div>
+          <Image
+            src={"/icons/call-calling.png"}
+            alt="call-icon"
+            height={20}
+            width={20}
+          />
+          <a href="Tel:+14044088024" target="_blank">
+            +1-404-408-8024
+          </a>
+        </div>
+
+        <div>
+          <Image
+            src={"/icons/envelop.png"}
+            alt="call-icon"
+            height={20}
+            width={20}
+          />
+          <a target="_blank" href={`mailto: Jusmineempire@gmail.com`}>
+            Jusmineempire@gmail.com
+          </a>
         </div>
       </div>
-
-      {/* NAVBAR */}
-      <div className="navbar-main-con">
-        <nav>
-          <ul>
-            <Link href="/">
-              <li
-                className={`${active === 1 ? "listactive" : ""}`}
-                onClick={() => setActive(1)}
-              >
-                {active == 1 ? <div className="nav-active"></div> : ""}
-                <span>
-                  <BsShop className="menu-icon" />
-                </span>
-                <p> Home</p>
-              </li>
-            </Link>
-            <Link href="/products">
-              <li
-                className={`${active === 2 ? "listactive" : ""}`}
-                onClick={() => setActive(2)}
-              >
-                {active == 2 ? <div className="nav-active"></div> : ""}
-                <span>
-                  <FiGrid className="menu-icon" />
-                </span>
-                <p> Products</p>
-              </li>
-            </Link>
-            <Link href="/orders">
-              <li
-                className={`${active === 3 ? "listactive" : ""}`}
-                onClick={() => setActive(2)}
-              >
-                {active == 3 ? <div className="nav-active"></div> : ""}
-                <span>
-                  <FiTruck className="menu-icon" />
-                </span>
-                <p> Order</p>
-              </li>
-            </Link>
-            <a href={`mailto:${adminEmail}`} target="_blank">
-              <li>
-                <span>
-                  <AiOutlineMail className="menu-icon" />
-                </span>
-                Support
-              </li>
-            </a>
-            {session?.user?.position === "admin" ||
-            session?.user?.position === "staff" ? (
-              <Link href="/Adminpage/AdminDashboard">
-                <li
-                  className={`${active === 5 ? "listactive" : ""}`}
-                  onClick={() => setActive(5)}
-                >
-                  {active == 5 ? <div className="nav-active"></div> : ""}
-                  <span>
-                    <GrUserAdmin className="menu-icon" />
-                  </span>
-                  <p> Admin</p>
-                </li>
-              </Link>
-            ) : (
-              ""
-            )}
-          </ul>
-        </nav>
+      <div className="topbar-right-details">
+        <p>SignIn</p>
       </div>
     </div>
   );

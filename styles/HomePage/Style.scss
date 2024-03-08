@@ -88,163 +88,30 @@ $txt-light-blue: #cfe8ff;
 // TOP BAR
 
 .topbar-main-con {
-  @include flexDisplay(space-around, center, column);
-  position: relative;
+  @include flexDisplay(space-between, center, row);
+  position: fixed;
+  padding: 40px 20px;
   z-index: 200;
   width: 100vw;
-  position: sticky;
-  position: fixed;
+
+  height: 20px;
   top: 0;
   left: 0;
-  background: #fff5f5;
+  background: #fff;
   box-shadow: 5px 5px 10px $bg-gray;
 
-  .topbar-top-con {
+  .topbar-left-details,
+  .topbar-right-details {
     @include flexDisplay(space-between, center, row);
-    width: 100vw;
-    height: 50px;
-    padding: 5px 10px;
-    position: sticky;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #fff5f5;
-    // border: 1px solid red;
+    gap: 30px;
+    text-transform: uppercase;
+    color: $font-light;
 
-    .topbar-top-con-left {
+    div {
       @include flexDisplay(space-between, center, row);
-
-      img {
-        // width: 50px;
-        height: 50px;
-        // border: 1px solid red;
-      }
-    }
-    .topbar-top-con-right {
-      // border: 2px solid red;
-      @include flexDisplay(space-between, center, row);
-      .cart-icon-con {
-        // border: 1px solid red;
-        @include flexDisplay(space-between, center, row);
-        position: relative;
-
-        sup {
-          padding-left: 3px;
-          margin-bottom: 10px;
-          font-weight: bolder;
-          font-size: 15px;
-          color: $txt-blue;
-          // border: 1px solid red;
-        }
-      }
-    }
-  }
-
-  // NAVBAR
-  .navbar-main-con {
-    // border: 1px solid red;
-    background: $txt-blue;
-    position: absolute;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    // top: 94%;
-    width: 100vw;
-    height: 60px;
-    // padding-bottom: 10px;
-    @include flexDisplay(space-between, center, row);
-
-    // top: 10%;
-    @include responsive(phone) {
-      width: 100%;
-    }
-    @include responsive(bigphone) {
-      // border: 1px solid red;
-      padding-bottom: 0;
-      position: relative;
-      height: 30px;
-      margin-top: 50px;
-    }
-
-    nav {
-      // border: 1px solid red;
-      width: 100%;
-      @include flexDisplay(space-between, center, row);
-
-      ul {
-        // border: 1px solid red;
-        width: 100%;
-        margin: 0 auto;
-        padding: 3px 0;
-        @include flexDisplay(space-between, center, row);
-
-        @include responsive(bigphone) {
-          height: 100%;
-          width: 500px;
-          padding: 0;
-          @include flexDisplay(space-between, center, row);
-        }
-        li {
-          @include flexDisplay(space-between, center, column);
-          padding: 0px 15px;
-          height: 100%;
-          font-size: 10px;
-          color: $bg-light;
-          cursor: pointer;
-          // border: 1px solid red;
-          @include responsive(phone) {
-            // padding: 5px 10px;
-          }
-
-          @include responsive(bigphone) {
-            font-size: 20px;
-          }
-
-          .nav-active {
-            // border: 2px solid red;
-            position: absolute;
-
-            border-radius: 50% 50% 0 0;
-            width: 20vw;
-            margin-top: -30px;
-            height: 20vw;
-            background: $txt-blue;
-            // z-index: 50;
-            @include responsive(bigphone) {
-              display: none;
-            }
-          }
-
-          p {
-            z-index: 30;
-          }
-          span {
-            @include flexDisplay(space-between, center, column);
-            font-size: 33px;
-            position: relative;
-            z-index: 100;
-
-            @include responsive(phone) {
-              font-size: 25px;
-            }
-            .menu-icon {
-              &:hover {
-                transform: scale(0.9);
-              }
-            }
-
-            @include responsive(bigphone) {
-              display: none;
-            }
-          }
-        }
-
-        @include responsive(bigphone) {
-          .listactive {
-            background: white;
-            color: $txt-blue;
-          }
-        }
+      gap: 5px;
+      a {
+        color: $font-light;
       }
     }
   }
@@ -422,7 +289,7 @@ $txt-light-blue: #cfe8ff;
     background: $bg-light; /* Make sure $bg-light is defined */
     width: 100%;
     overflow-x: auto; /* Use 'auto' for horizontal scrolling */
-// hkjhas
+    // hkjhas
     .category-con {
       border: 2px solid rgb(68, 0, 255);
       display: flex;
