@@ -31,7 +31,7 @@ function NewArrivals({ products }) {
     <div className="new-arrivals-main-con">
       <div className="new-arrivals-con">
         {/* heading */}
-        <h1> CATEGORIES</h1>
+        <h1>New Arrival</h1>
         {/* product container */}
 
         <div className="new-products-con">

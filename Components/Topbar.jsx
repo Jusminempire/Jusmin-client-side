@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { logOUT } from "../Services/functions";
 import Cookies from "js-cookie";
 import SucessSlider from "../Components/SucessSlider";
+import NavDrawer from "../Components/Homepage/NavDrawer";
 // ICONS
 import { SiCoinmarketcap } from "react-icons/si";
 import { FaCartArrowDown } from "react-icons/fa";
@@ -15,7 +16,15 @@ import { getSessionUser } from "../Services/functions";
 import { CartQuantityContext } from "../pages/_app";
 import { AiOutlineMail, AiTwotoneMail } from "react-icons/ai";
 
-function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
+function Topbar({
+  dynamictriger,
+  triga,
+  localCartTriger,
+  localCartLength,
+  dynamicBtn,
+  category,
+  setCategory,
+}) {
   // SET NAV LIST COLOR WITH PAGE PATH NAME
   const cartQty = useContext(CartQuantityContext).cartQty;
   const [active, setActive] = useState(0);
@@ -73,35 +82,9 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
   return (
     <section className="topbar-section">
       <div className="topbar-top-con">
-        {/* TOPBAR  */}
-        {/* logo side */}
-        {/* <div>
-          <p style={{ marginLeft: "5px", color: "#ff69b4" }}>
-            {name && "Hello! " + name.split(" ")[0]}
-          </p>
-        </div> */}
-        {/* cart and user icon */}
-
-        {/* NAVBAR */}
-        {/* <div>
-        {session?.user?.position === "admin" ||
-        session?.user?.position === "staff" ? (
-          <Link href="/Adminpage/AdminDashboard">
-            <li
-              className={`${active === 5 ? "listactive" : ""}`}
-              onClick={() => setActive(5)}
-            >
-              {active == 5 ? <div className="nav-active"></div> : ""}
-              <span>
-                <GrUserAdmin className="menu-icon" />
-              </span>
-              <p> Admin</p>
-            </li>
-          </Link>
-        ) : (
-         null
-        )}
-      </div> */}
+        <div className="drawer-menu">
+          <NavDrawer />
+        </div>
 
         <div className="topbar-left-details">
           <div>
@@ -150,12 +133,34 @@ function Topbar({ dynamictriger, triga, localCartTriger, localCartLength }) {
         style={{
           borderTop: ".5px solid gray",
           width: "100%",
-          marginTop: "10px",
         }}
       ></div>
       <div className="topbar-bottom-con">
         <h1>JUSMIN EMPIRE</h1>
-        <SucessSlider />
+        {/* <SucessSlider /> */}
+        <div className="homepage-category-main-con">
+          <div className="category-con">
+            {dynamicBtn.map((btn, index) => (
+              <button
+                key={index}
+                className={`${
+                  btn === category ? "category active-category" : "category"
+                }`}
+                onClick={() => setCategory(btn)}
+              >
+                {btn}
+              </button>
+            ))}
+          </div>
+          {/* <form>
+          <BsSearch />
+          <input
+            type="text"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search ..."
+          />
+        </form> */}
+        </div>
       </div>
     </section>
   );

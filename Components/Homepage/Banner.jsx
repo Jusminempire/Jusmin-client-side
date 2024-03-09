@@ -21,7 +21,7 @@ function Banner() {
       }
     );
   }, [db]);
-
+  console.log(bannerDetails[0]?.data()?.bannerimage);
   return (
     <div className="banner-main-con">
       <div className="content">
@@ -32,9 +32,11 @@ function Banner() {
               {bannerDetails?.map((item, index) => (
                 <div className="carousel-items-con" key={item.id}>
                   <Image
-                    src={item?.data()?.bannerimage}
+                    src="https://res.cloudinary.com/isreal/image/upload/v1709956545/wig_store_banner_-_Google_Search_copy_ai1kuh.jpg"
+                    // src={bannerDetails[0].data().bannerimage}
                     alt="img"
                     className="img"
+                    lazy
                     fill
                     sizes="100vw"
                     style={{

@@ -138,14 +138,44 @@ const Homepage = () => {
     //   return setLoginTriger(true);
     // }
   };
-  // console.log(cartBtnLoading);
+  // filter base on category
+  // const halfLength = Math.ceil(products.length / 2);
+  // const firstHalf = products.slice(0, halfLength);
+
+  // filter products by category
+  const dynamicBtn = [
+    // "All",
+    ...new Set(products.map((category) => category?.data()?.productcategory)),
+  ];
+  // state for category
+  const [category, setCategory] = useState("Beauty");
+
+  // state for products
+  const [productsList, setProductsList] = useState(products);
+
+  // filter products based on category
+  useEffect(() => {
+    if (category === "All") {
+      setProductsList(products);
+    } else {
+      setProductsList(
+        products?.filter((item) => item.data().productcategory === category)
+      );
+    }
+  }, [category]);
+
+  const [search, setSearch] = useState("");
   return (
     <div className="homepage-main-con" style={{ position: "relative" }}>
       {/* TOPBAR */}
       <Topbar
         localCartTriger={localCartTriger}
         localCartLength={localCartLength}
+        dynamicBtn={dynamicBtn}
+        category={category}
+        setCategory={setCategory}
       />
+
       {/* BANNER */}
 
       {products.length < 1 ? (
@@ -156,13 +186,18 @@ const Homepage = () => {
 
           <Group position="center"></Group>
           <Banner />
+
           <div className="category-con">{/* <h1>CATEGORIES</h1> */}</div>
-          {/* <Advert /> */}
+          <Advert />
           {/* NEW ARRIVALS */}
           {/* <NewArrivals products={products} /> */}
           {/* <Advert /> */}
           {/* MAIN PRODUCT */}
-          {/* <Products products={products} addToCar={addToCar} /> */}
+          <Products
+            products={products}
+            productsList={productsList}
+            addToCar={addToCar}
+          />
           {/* <Advert /> */}
           {/* SUBSCRIBE */}
           {/* <NewsLetter /> */}
@@ -173,7 +208,7 @@ const Homepage = () => {
           {/* <Review /> */}
           {/* <Advert /> */}
           {/* FOOTER */}
-          {/* <Footer /> */}
+          <Footer />
           {loginTriger && <Modal setLoginTriger={setLoginTriger} />}
         </>
       )}

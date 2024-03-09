@@ -28,6 +28,6 @@
     "pages/index.jsx",
     "pages/_app.jsx",
     "pages/api/auth/AuthGuard..jsx"
-, "Components/Homepage/Products.jsx", "pages/api/getUserDetails.js", "Components/Homepage/NewArrivals.jsx", "Components/Homepage/NewsLetter.jsx", "Components/Homepage/Promo.jsx", "Components/Homepage/Review.jsx", "Components/ProductPage/Products.jsx"  ],
+, "Components/Homepage/Products.jsx", "pages/api/getUserDetails.js", "Components/Homepage/NewArrivals.jsx", "Components/Homepage/NewsLetter.jsx", "Components/Homepage/Promo.jsx", "Components/Homepage/Review.jsx", "Components/ProductPage/Products.jsx", "Components/Homepage/NavDrawer.jsx"  ],
   "exclude": ["node_modules"]
 }

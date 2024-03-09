@@ -28,7 +28,7 @@ $font-light: #666;
 $bg-gray: #eee;
 $bg-dark-gray: #444;
 $bg-dark: #342e37;
-$txt-blue: #ff69b4;
+$txt-blue: black;
 $txt-light-blue: #cfe8ff;
 
 @mixin flexDisplay($justifyProp, $alignProp, $flexDirection) {
@@ -81,15 +81,17 @@ $txt-light-blue: #cfe8ff;
 .topbar-section {
   @include flexDisplay(space-between, center, column);
   position: fixed;
-  padding: 7px 20px;
+  padding: 0px 0px;
   z-index: 200;
   width: 100vw;
-
-  // height: 20px;
   top: 0;
   left: 0;
   background: #fff;
   box-shadow: 5px 5px 10px $bg-gray;
+
+  @include responsive(bigphone) {
+    padding: 7px 20px;
+  }
   .topbar-top-con {
     @include flexDisplay(space-between, center, row);
     padding: 10px 20px;
@@ -98,6 +100,12 @@ $txt-light-blue: #cfe8ff;
     max-width: 1500px;
     // border: 2px solid red;
 
+    .drawer-menu {
+      display: flex;
+      @include responsive(bigphone) {
+        display: none;
+      }
+    }
     .topbar-left-details,
     .topbar-right-details {
       @include flexDisplay(space-between, center, row);
@@ -114,22 +122,29 @@ $txt-light-blue: #cfe8ff;
         }
       }
     }
+    .topbar-left-details {
+      display: none;
+      @include responsive(bigphone) {
+        @include flexDisplay(space-between, center, row);
+      }
+    }
   }
 
   .topbar-bottom-con {
     @include flexDisplay(center, center, column);
     padding: 20px 10px;
-    // border: 2px solid red;
     width: 100%;
     max-width: 1500px;
     color: $font-light;
 
     h1 {
-      font-size: 40px;
+      font-size: 30px;
+      @include responsive(bigphone) {
+        font-size: 40px;
+      }
     }
   }
   .topbar-scroll {
-    // border: 2px solid red;
     margin-top: 15px;
     width: 100%;
     max-width: 1500px;
@@ -143,7 +158,6 @@ $txt-light-blue: #cfe8ff;
 // HOME PAGE MAIN CON
 .homepage-main-con {
   padding: 50px 0;
-  // background: #eee;
 
   @include responsive(bigphone) {
     padding: 0;
@@ -152,29 +166,27 @@ $txt-light-blue: #cfe8ff;
 
 // BANNER STYLE
 .banner-main-con {
+  padding: 7px 10px;
+  margin-top: 170px;
   // border: 2px solid red;
-
   @include responsive(bigphone) {
     margin-top: 250px;
   }
   .carousel-main-con {
-    // border: 2px solid rgb(0, 64, 255);
     position: relative;
-    // height: 200px;
-
+    margin: 0 auto;
     .carousel-con {
-      // border: 2px solid rgb(0, 255, 34);
       max-width: 1500px;
-      height: 190px;
+      height: 200px;
       margin: 0 auto;
       border-radius: 10px;
       overflow: hidden;
       .carousel-items-con {
         height: 200px;
         width: 100%;
+        max-width: 1500px;
         position: absolute;
         top: 0;
-        // border: 2px solid red;
 
         @include responsive(bigphone) {
           height: 300px;
@@ -184,6 +196,7 @@ $txt-light-blue: #cfe8ff;
         }
         .img {
           object-fit: cover;
+          max-width: 1500px;
         }
       }
       @include responsive(bigphone) {
@@ -212,22 +225,25 @@ $txt-light-blue: #cfe8ff;
 // NEW PRODUCTS
 .new-arrivals-main-con {
   width: 100vw;
-  margin-top: 50px;
+  max-width: 1500px;
+  margin: 0 auto;
+  margin-top: 20px;
   overflow-x: hidden;
-  // border: 2px solid red;
+  border: 2px solid red;
   @include responsive(tablet) {
-    margin-top: 100px;
+    margin-top: 20px;
   }
   .new-arrivals-con {
     @include flexDisplay(space-between, center, column);
 
     h1 {
-      color: $txt-blue;
-      margin-left: 5px;
-      font-size: 30px;
+      color: $font-light;
+      // margin-left: 5px;
+      font-size: 10px;
+      margin-right: auto;
 
       @include responsive(tablet) {
-        font-size: 50px;
+        font-size: 20px;
       }
     }
     .new-products-con {
@@ -307,9 +323,9 @@ $txt-light-blue: #cfe8ff;
 
 // PRODUCT
 .product-session-con {
-  border: 2px solid red;
+  // border: 2px solid red;
   background: #fff5f5;
-  // margin-top: 70px;
+  margin-top: 70px;
   // padding: 10px 0;
   width: 100%;
   padding-bottom: 10px;
@@ -322,13 +338,9 @@ $txt-light-blue: #cfe8ff;
 
   // homepage product category filter button container
   .homepage-category-main-con {
-    border: 2px solid red;
-    background: $bg-light; /* Make sure $bg-light is defined */
     width: 100%;
     overflow-x: auto; /* Use 'auto' for horizontal scrolling */
-    // hkjhas
     .category-con {
-      border: 2px solid rgb(68, 0, 255);
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap; /* Prevent wrapping to the next line */
@@ -338,15 +350,11 @@ $txt-light-blue: #cfe8ff;
       white-space: nowrap; /* Prevent text from wrapping within buttons */
       margin: 0 auto;
       button {
-        width: 200px; /* Set a minimum width for the buttons */
-        height: 150px; /* Set the desired height */
+        min-width: 50px; /* Set a minimum width for the buttons */
         padding: 5px;
         margin: 0 10px;
         border-radius: 5px;
         position: relative;
-        /* Additional styling properties */
-        // background: white; /* Make sure it's the correct color you want */
-        // border: 1px solid #f5f3f3;
       }
     }
   }
@@ -354,17 +362,17 @@ $txt-light-blue: #cfe8ff;
   .product-main-con {
     @include flexDisplay(space-between, center, column);
     width: 100%;
-    max-width: 1330px;
+    max-width: 1500px;
     margin: 0 auto;
 
     h1 {
       color: $txt-blue;
       margin-left: 5px;
       margin-top: 20px;
-      font-size: 30px;
-
+      font-size: 20px;
+      margin-right: auto;
       @include responsive(tablet) {
-        font-size: 50px;
+        font-size: 30px;
       }
     }
     p {
@@ -374,32 +382,33 @@ $txt-light-blue: #cfe8ff;
     }
 
     .products-con {
-      @include flexDisplay(space-evenly, flex-start, row);
+      @include flexDisplay(space-between, center, row);
       flex-wrap: wrap;
-      margin-top: 30px;
+      // margin-top: 30px;
       width: 100%;
+      max-width: 1500px;
       // border: 2px solid red;
 
       @include responsive(bigphone) {
-        @include flexDisplay(center, center, row);
+        // @include flexDisplay(center, center, row);
         margin-top: 30px;
       }
 
       .products {
         @include flexDisplay(space-evenly, center, column);
-        width: 45%;
+        width: 47.4%;
         padding: 5px 5px 0 5px;
-        margin: 10px 5px;
+        margin: 5px 5px;
         border-radius: 5px;
         background: white;
         overflow: hidden;
-        max-width: 180px;
+        // max-width: 180px;
         // background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
         border: 1px solid rgba(128, 128, 128, 0.133);
         // border: 2px solid red;
         @include responsive(bigphone) {
-          width: 20%;
-          max-width: 200px;
+          width: 24%;
+          // max-width: 200px;
         }
 
         .product-name {
@@ -456,7 +465,7 @@ $txt-light-blue: #cfe8ff;
             height: 200px;
           }
           @include responsive(tablet) {
-            height: 220px;
+            height: 400px;
           }
 
           .home-product-img {
@@ -977,6 +986,8 @@ $txt-light-blue: #cfe8ff;
 .ad-con {
   position: relative;
   width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 
   .ad-img {
     @include flexDisplay(center, center, row);
@@ -984,20 +995,13 @@ $txt-light-blue: #cfe8ff;
       // width: 100%;
       margin: 0 auto;
       cursor: pointer;
-
       height: 100px;
       width: 100vw;
 
       @include responsive(bigphone) {
         height: 150px;
-        width: 100%;
+        width: 500px;
       }
-    }
-
-    h3 {
-      text-align: center;
-      color: $txt-blue;
-      font-size: 15px;
     }
   }
 }
@@ -1039,7 +1043,7 @@ $txt-light-blue: #cfe8ff;
         cursor: pointer;
         top: 5px;
         left: 5px;
-        background: #ff69b4;
+        background: $txt-blue;
         border: 1px solid #8080802b;
         color: white;
         width: 70px;

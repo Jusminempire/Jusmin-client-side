@@ -33,8 +33,6 @@ function Advert() {
   return (
     <div className="ad-con">
       <Carousel
-        // withIndicators
-        // height={200}
         slideSize="33.333333%"
         slideGap="md"
         dragFree
@@ -49,84 +47,36 @@ function Advert() {
         <Carousel.Slide>
           <div className="ad-img">
             {advertImg.length > 0 ? (
-              <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img
-                  src={advertImg[0][0]}
-                  alt="add"
-                  // style={{ height: "190px" }}
-                />
-                <h3>HAIR / WIGS</h3>
-              </a>
+              <img src={advertImg[0][0]} lazy alt="add" />
             ) : (
-              <a
-                href="https://wa.me/+2348036027773?text=Hello, I came across your platform and i would like to place an advert."
-                target="_blank"
-              >
-                <img src={defaultAdImg} alt="add" />
-              </a>
+              <img src={defaultAdImg} lazy alt="add" />
             )}
           </div>
         </Carousel.Slide>
         <Carousel.Slide>
           <div className="ad-img">
             {advertImg?.length > 0 ? (
-              <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img
-                  src={advertImg[0][1]}
-                  alt="add"
-                  // style={{ height: "190px" }}
-                />
-                <h3>NAILS / BEAUTY</h3>
-              </a>
+              <img src={advertImg[0][1]} lazy alt="add" />
             ) : (
-              <a
-                href="https://wa.me/+2348036027773?text=Hello, I came across your platform and i would like to place an advert."
-                target="_blank"
-              >
-                <img src={defaultAdImg} alt="add" />
-              </a>
+              <img src={defaultAdImg} lazy alt="add" />
             )}
           </div>
         </Carousel.Slide>
         <Carousel.Slide>
           <div className="ad-img">
             {advertImg.length > 0 ? (
-              <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img
-                  src={advertImg[0][2]}
-                  alt="add"
-                  // style={{ height: "190px" }}
-                />
-                <h3>POUCH / ASSOCCERIES</h3>
-              </a>
+              <img src={advertImg[0][2]} lazy alt="add" />
             ) : (
-              <a
-                href="https://wa.me/+2348036027773?text=Hello, I came across your platform and i would like to place an advert."
-                target="_blank"
-              >
-                <img src={defaultAdImg} alt="add" />
-              </a>
+              <img src={defaultAdImg} lazy alt="add" />
             )}
           </div>
         </Carousel.Slide>
         <Carousel.Slide>
           <div className="ad-img">
             {advertImg.length > 0 ? (
-              <a href={"https://" + `${advertLink[0]}`} target="_blank">
-                <img
-                  src={advertImg[0][3]}
-                  alt="add"
-                  // style={{ height: "190px" }}
-                />
-                <h3>ADULT TOYS</h3>
-              </a>
+              <img src={advertImg[0][3]} lazy alt="add" />
             ) : (
-              <a
-                href="https://wa.me/+2348036027773?text=Hello, I came across your platform and i would like to place an advert."
-                target="_blank"
-              >
-                <img src={defaultAdImg} alt="add" />
-              </a>
+              <img src={defaultAdImg} lazy alt="add" />
             )}
           </div>
         </Carousel.Slide>
